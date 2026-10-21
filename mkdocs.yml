@@ -3,8 +3,8 @@ site_url: https://docs-acit.surrey.ac.uk
 site_description: Documentation to help you learn, operate and understand research computing infrastructure.
 
 theme:
-  logo: assets/images/ACIT-hub-white-font.png
-  favicon: assets/images/ACIT-hub-white-font.png
+  logo: assets/images/ACIT_logo_white_background.png
+  favicon: assets/images/ACIT_logo_white_background.png
   name: material
   palette:
     - scheme: default

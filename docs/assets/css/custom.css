@@ -48,3 +48,11 @@
   border-color: #757575;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+
+.md-sidebar--primary .md-sidebar__inner {
+  border: 1px solid #2e7cae;
+  border-radius: 8px;
+  margin: 8px;
+  padding: 12px;
+}
