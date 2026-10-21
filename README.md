@@ -10,8 +10,8 @@
 1. Clone the repository:
 
 ```bash
-    git clone git@github.com:YOUR-USERNAME/rie-docs.git
-    cd rie-docs
+    git clone https://github.com/ACIT-Hub/docs-acit.surrey.ac.uk
+    cd docs-acit.surrey.ac.uk
 ```
 
 2. Create a virtual environment:
