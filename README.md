@@ -43,7 +43,7 @@
 4. Install dependencies:
 
     ```bash
-    pip install mkdocs-material
+    pip install -r requirements.txt
     ```
 
 5. Serve the site locally:
