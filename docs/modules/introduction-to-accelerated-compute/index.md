@@ -1,4 +1,4 @@
-# Introduction to Accelerated Compute
+# Introduction to Accelerated Compute and the RIE role
 ## Overview
 
 This module introduces the foundations of accelerated computing for the Research Infrastructure Engineering role.

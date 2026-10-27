@@ -57,7 +57,7 @@ nav:
   - Home: "index.md"
   - Modules:
       - modules/index.md
-      - Introduction to Accelerated Compute:
+      - Introduction to Accelerated Compute and the RIE Role:
           - Overview: modules/introduction-to-accelerated-compute/index.md
           - modules/introduction-to-accelerated-compute/hpc-and-accelerated-compute.md
           - modules/introduction-to-accelerated-compute/types-of-accelerators.md
