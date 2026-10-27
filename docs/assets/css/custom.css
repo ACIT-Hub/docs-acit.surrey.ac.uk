@@ -67,3 +67,22 @@
   margin-left: 12px;
   padding-left: 12px;
 }
+
+
+.img-left {
+  float: left;
+  width: 200px;
+  margin: 0 1rem 0 0;
+  border-radius: 6px;
+}
+.img-box {
+  display: flow-root;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+}
+.img-box > :first-child { margin-top: 0; }
+.img-box > :last-child { margin-bottom: 0; }
+.md-typeset :is(h2, h3, h4) {
+  clear: both;
+}
