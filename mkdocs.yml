@@ -22,7 +22,7 @@ theme:
   features:
     - navigation.top
     - navigation.tracking
-    - navigation.indexes
+    - navigation.indexes # comment to disable the search index page
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -57,5 +57,11 @@ nav:
   - Home: "index.md"
   - Modules:
       - modules/index.md
-      - modules/introduction-to-accelerated-compute.md
+      - Introduction to Accelerated Compute:
+          - Overview: modules/introduction-to-accelerated-compute/index.md
+          - modules/introduction-to-accelerated-compute/hpc-and-accelerated-compute.md
+          - modules/introduction-to-accelerated-compute/types-of-accelerators.md
+          - modules/introduction-to-accelerated-compute/rie-role.md
+          - modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
+          - modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
       - modules/monitoring-for-accelerated-compute.md

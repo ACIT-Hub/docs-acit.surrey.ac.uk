@@ -6,7 +6,7 @@ Documentation to help you learn, operate and understand research computing infra
 
 <div class="grid cards" markdown>
 
-- :material-expansion-card: **[Introduction to Accelerated Compute](modules/introduction-to-accelerated-compute.md)**
+- :material-expansion-card: **[Introduction to Accelerated Compute](modules/introduction-to-accelerated-compute/index.md)**
 
     ---
 
