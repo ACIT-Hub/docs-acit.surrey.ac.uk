@@ -12,7 +12,11 @@ High-performance computing (HPC) is about using many computing resources togethe
 
 ## 1. Multi-CPU and Multi-core
 
-Content...
+Initially, before multi-core systems had been invented, if you wanted more compute power, you added more CPUs. 
+
+Here's an example of a multi-CPU motherboard: 
+![x86 architecture](../../assets/images/mutli-cpu-multi-core.png){ width="200" }
+*Figure 1: Source: [Phoronix](https://www.phoronix.com/news/Arch-Linux-Deprecating-i686)*
 
 ## 2. Multi-node
 
