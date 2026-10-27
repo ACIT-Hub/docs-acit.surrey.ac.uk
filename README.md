@@ -9,48 +9,48 @@
 
 1. Clone the repository:
 
-```bash
+    ```bash
     git clone https://github.com/ACIT-Hub/docs-acit.surrey.ac.uk
     cd docs-acit.surrey.ac.uk
-```
+    ```
 
 2. Create a virtual environment:
 
-```bash
+    ```bash
     python3 -m venv venv
-```
+    ```
 
 3. Activate the virtual environment:
 
-    === "macOS / Linux"
+    **macOS / Linux**
 
-```bash
-        source venv/bin/activate
-```
+    ```bash
+    source venv/bin/activate
+    ```
 
-    === "Windows (PowerShell)"
+    **Windows (PowerShell)**
 
-```powershell
-        venv\Scripts\Activate.ps1
-```
+    ```powershell
+    venv\Scripts\Activate.ps1
+    ```
 
-    === "Windows (CMD)"
+    **Windows (CMD)**
 
-```cmd
-        venv\Scripts\activate.bat
-```
+    ```cmd
+    venv\Scripts\activate.bat
+    ```
 
 4. Install dependencies:
 
-```bash
+    ```bash
     pip install mkdocs-material
-```
+    ```
 
 5. Serve the site locally:
 
-```bash
+    ```bash
     mkdocs serve
-```
+    ```
 
 6. Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
@@ -58,9 +58,9 @@
 
 1. Create a new branch:
 
-```bash
+    ```bash
     git checkout -b my-changes
-```
+    ```
 
 2. Add or edit `.md` files under `docs/`.
 
@@ -70,10 +70,10 @@
 
 5. Commit and push:
 
-```bash
+    ```bash
     git add .
     git commit -m "Description of changes"
     git push origin my-changes
-```
+    ```
 
 6. Open a pull request on GitHub.
