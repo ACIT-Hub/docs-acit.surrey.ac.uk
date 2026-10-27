@@ -1,4 +1,4 @@
-# Local Development Setup
+# Contributing to the docs-acit.surrey.ac.uk project
 
 ## Prerequisites
 
