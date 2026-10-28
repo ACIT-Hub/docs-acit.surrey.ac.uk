@@ -91,12 +91,94 @@ The challenge with using multi-core programming is:
 
 ## 2. Multi-node
 
-Content...
+Sometimes the problem is so big that it will either be: 
+
+- too slow to run on one computer (even with multi-core). 
+- too large to fit in the memory on one computer. 
+ 
+
+This is where we scale things up to run on multiple nodes. 
+
+There are a few ways in which a program can break up problems to distribute across multiple nodes. As an example, if you take two arrays of values a[] and b[] and want to get the results, you can distribute the problem across multiple nodes: 
+
+Node 1: a[1] + b[1] 
+
+Node 2: a[2] + b[2] 
+
+Node 3: a[3] + b[3] 
+
+Node n: a[n] + b[n] 
+
+Each node runs its calculation and then sends the result to the control node. After each time step, each computer communicates with the other computers in the cluster to tell them what’s happening. Then they run the next calculation in the series. 
+
+Multi-node computing is used in many different fields, for example in climate modelling and large molecular dynamics simulations. 
+
+This is an example of a supercomputer at the University of Bristol: 
+
+<div class="img-box" markdown>
+![Logo](../../assets/images/super-computer.png){ .img-left width="500"}
+
+
+</div>
+*Figure 1.5: Source:*
+
+Inside each of those cabinets are about 40 computers on top of each other, each acting as single entity. 
+
+The power comes from there being a lot of them connected together, but supercomputers can vary massively in size, from a cluster of Raspberry Pis with only four nodes to ARCHER2, which has 6,000 nodes, and Fugaku, which has 159,000 nodes.  
+
+!!! question "Challenge"
+
+    Write a short sentence that would explain what a supercomputer is to someone who doesn't know lots about computers.
+
+    When you've written your sentence, you can take a look at ours:
+
+    ??? success "Show our answer"
+
+        A supercomputer is just lots of computers connected together to work on big problems.
 
 ## 3. Vector Extensions
 
-Content...
+ 
+Vector extensions are CPU instruction set enhancements that allow a single instruction to operate on multiple data elements simultaneously, rather than processing one value at a time. 
 
-## 4. Exercises/MCQ's
+For example, consider the following process of adding two sets of four element arrays together; typically, each element will be added to the other during one instruction:
+
+c[0] = a[0] + b[0] 
+
+c[1] = a[1] + b[1]
+
+c[2] = a[2] + b[2] 
+
+c[3] = a[3] + b[3]
+
+If the CPU supports the correct vector extension instruction, then this operation could be done with a single instruction: 
+c[0:3] = a[0:3] + b[0:3] 
+
+Given that a CPU typically has a fixed upper limit on the number of instructions it can execute per cycle, this is one of the many techniques CPU designers have used to improve processor performance over time, particularly for certain types of workloads. 
+
+Over the years, several vector instruction-set extensions have been introduced, including MMX (Multi-Media Extensions), SSE (Streaming SIMD Extensions), and AVX (Advanced Vector Extensions). 
+
+## 4. GPUs
+
+GPUs first came to mass market in the late 1990s to make games look better. 
+
+Over the last 25 years they have become much more powerful and flexible. 
+
+<div class="img-box" markdown>
+![Logo](../../assets/images/gpu-image.png){ .img-left width="500"}
+
+
+</div>
+*Figure 1.5: Source:*
+
+
+GPUs (Graphics Processing Units) were originally designed to draw images on screens, especially for games. An HD screen has around 2 million pixels, and the computer needs to decide the colour of each pixel, many times per second. 
+
+To do this efficiently: 
+
+- The same piece of code is run for every pixel. 
+- Only the input data (e.g. position, texture, lighting) changes. 
+
+## 5. Exercises/MCQ's
 
 Content...
