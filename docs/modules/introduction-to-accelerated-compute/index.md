@@ -19,7 +19,15 @@ This module introduces the foundations of accelerated computing for the Research
     - Outline some common tasks undertaken by junior RIEs related to accelerated compute. 
     - Discuss key ethics and sustainability considerations relevant to RIE work
 
+???+ tip "Competencies"
+    This module supports the development of levels 1-2 of the following DIRECT skills: 
+    
+    - Hardware systems. 
+    - Cluster infrastructure. 
+    - Cluster management . 
+  
 
+## Sections
 
 ??? info "1. HPC and Accelerated Compute"
     - What HPC is, and why we use multi-CPU, multi-core, multi-node systems.
