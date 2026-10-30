@@ -1,0 +1,73 @@
+site_name: Research Infrastructure Engineering
+site_url: https://docs-acit.surrey.ac.uk
+site_description: Documentation to help you learn, operate and understand research computing infrastructure.
+
+theme:
+  logo: assets/images/ACIT_logo_white_background.png
+  favicon: assets/images/ACIT_logo_white_background.png
+  name: material
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes # comment to disable the search index page
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - pymdownx.snippets:
+      base_path: !relative
+      check_paths: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - tables
+
+extra_css:
+  - assets/css/custom.css
+extra_javascript:
+  - assets/js/custom.js
+
+plugins:
+  - search
+  - h5p:
+      player_url: assets/h5p-standalone/dist
+  
+
+nav:
+  - Home: "index.md"
+  - Modules:
+      - modules/index.md
+      - Introduction to Accelerated Compute and the RIE Role:
+          - Overview: modules/introduction-to-accelerated-compute/index.md
+          - HPC and Accelerated Compute: modules/introduction-to-accelerated-compute/hpc-and-accelerated-compute.md
+          - Types of Accelerators: modules/introduction-to-accelerated-compute/types-of-accelerators.md
+          - The RIE Role: modules/introduction-to-accelerated-compute/rie-role.md
+          - Common Junior RIE Tasks: modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
+          - Ethics and Sustainable Compute: modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
+      - modules/monitoring-for-accelerated-compute.md
