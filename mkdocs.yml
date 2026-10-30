@@ -53,6 +53,10 @@ extra_css:
 extra_javascript:
   - assets/js/custom.js
 
+plugins:
+  - search
+  - h5p
+
 nav:
   - Home: "index.md"
   - Modules:

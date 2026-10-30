@@ -179,6 +179,49 @@ To do this efficiently:
 - The same piece of code is run for every pixel. 
 - Only the input data (e.g. position, texture, lighting) changes. 
 
-## 5. Exercises/MCQ's
 
-Content...
+<div class="img-box" markdown>
+![Logo](../../assets/images/pixelation-function.png){ .img-left width="500"}
+
+
+</div>
+*Figure 1.6: Source:*
+
+
+The image above shows how we might write a GPU program in Python. The function takes arguments about a single pixel and gives an output. The GPU will automatically run this function for every pixel at (almost) the same time. 
+
+However, compared to most CPUs, which have between 4 and 16 cores, the latest GPUs have nearly 7,000 cores. Each core is much simpler though see,
+[https://www.youtube.com/watch?v=_O9WXzE65dM&t=2s](https://www.youtube.com/watch?v=_O9WXzE65dM&t=2s).
+
+This same idea can be transferred to outputs other than colour. The output can be any number. 
+
+Over time, people realised this idea could be used for general‑purpose computation, not just graphics. For example, instead of computing colours, GPUs can compute: 
+
+- Matrix multiplications for AI/ML. 
+- Numerical kernels for simulations. 
+- Many independent operations on large arrays. 
+
+!!! question "Challenge"
+
+    Write a short sentence that would explain what a GPU is used for to someone who doesn’t know much about computers. 
+
+    ??? success "Show our answer"
+
+        GPUs are for doing lots of the same calculation at the same time. .
+
+
+!!! question "Challenge"
+
+    Why do RIEs need to understand the difference between multi‑core, multi‑node, and GPUs?  
+
+    ??? success "Show our answer"
+
+        - When a job is stuck or slow, you need to know whether it’s a single‑node issue (e.g. wrong partition) or a multi‑node problem (e.g. network). 
+        - When users ask for GPUs, you need to understand what GPUs are good at (many similar calculations) and when they might be overkill. 
+        - When planning new hardware or advising on resource requests, you need to know the difference between CPU‑heavy and GPU‑heavy workloads. 
+
+## 5. Exercises/Test your learning
+
+![h5p](know-your-compute.h5p)
+
+![h5p](know-your-compute.h5p)
