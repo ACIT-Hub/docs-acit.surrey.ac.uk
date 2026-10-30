@@ -41,7 +41,7 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
     - What does the architecture of a classic monitoring setup look like.
     - Who may have interest in monitored metrics.
 
-    [ Go to section](monitoring-approaches-and-tools.md)
+    [ Go to section](approaches-and-tools.md)
 
 ??? info "3. Prometheus & Exporters"
     - pending (E.G. now may split content across Victoria Metrics)
@@ -51,5 +51,5 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
 ??? info "4. Grafana"
     - pending (Awaiting dashboard examples to guide development)
 
-    [ Go to section](grafana.md) -->
+    <!-- [ Go to section](grafana.md) -->
 
