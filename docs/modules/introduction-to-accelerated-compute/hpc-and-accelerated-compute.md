@@ -14,13 +14,13 @@ High-performance computing (HPC) is about using many computing resources togethe
 
 Initially, before multi-core systems had been invented, if you wanted more compute power, you added more CPUs. 
 
-Here's an example of a multi-CPU motherboard: 
+
 
 
 <div class="img-box" markdown>
 ![Logo](../../assets/images/mutli-cpu-multi-core.png){ .img-left }
 
-
+Here's an example of a multi-CPU motherboard
 </div>
 *Figure 1: Source: [Phoronix](https://www.phoronix.com/news/Arch-Linux-Deprecating-i686)*
 
@@ -28,11 +28,9 @@ CPUs communicated via a high-speed interconnect allowing for all the CPUs to sha
 
 Most physical CPU chips have multiple sub-CPUs, called ‘cores’. 
 
-This CPU has 4 cores: 
-
 <div class="img-box" markdown>
 ![Logo](../../assets/images/cpu4cores.png){ .img-left width="300" }
-
+This CPU has 4 cores 
 
 </div>
 *Figure 1.1: Source:*
@@ -223,3 +221,5 @@ Over time, people realised this idea could be used for general‑purpose computa
 ## 5. Exercises/Test your learning
 
 ![h5p](compute-type-quiz_1.h5p)
+
+In this section you have started to learn about GPUs, a type of accelerator. Continue to the next section where we will explore accelerators in more detail, including different types of accelerators and the implications of accelerator choice. 

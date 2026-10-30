@@ -68,6 +68,6 @@ nav:
           - modules/introduction-to-accelerated-compute/hpc-and-accelerated-compute.md
           - modules/introduction-to-accelerated-compute/types-of-accelerators.md
           - modules/introduction-to-accelerated-compute/rie-role.md
-          - modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
+          - Common Junior RIE Tasks: modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
           - modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
       - modules/monitoring-for-accelerated-compute.md
