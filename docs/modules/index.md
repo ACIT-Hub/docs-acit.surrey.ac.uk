@@ -4,7 +4,7 @@
 
 <div class="grid cards" markdown>
 
-- :material-expansion-card: **[Introduction to Accelerated Compute](modules/introduction-to-accelerated-compute/index.md)**
+- :material-expansion-card: **[Introduction to Accelerated Compute](introduction-to-accelerated-compute/index.md)**
 
     ---
 
