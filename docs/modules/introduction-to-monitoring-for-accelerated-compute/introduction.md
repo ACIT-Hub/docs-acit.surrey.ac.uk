@@ -40,7 +40,15 @@ Likewise, stakeholders among management are often keen to monitor utilisation of
 
 As a junior RIE you may be expected to setup new dashboards from scratch, or configure initialisation workflows to automatically extend monitoring to new hardware. Likewise, you will need to understand the environment and chain of command locally, so that you can respond appropriately when monitoring highlights a metric requiring action.
 
-<!-- @Todo: Ethical/Sustainability considerations -->
+## Why monitor?
+
+Although the driving motivator for monitoring accelerated compute infrastructure may be to maximise uptime and availability, as in the anecdote at the start of this chapter, it's worth considering the second order effects and indirect applications.
+
+Accelerated compute infrastructure represents a substantial financial and environmental investment. High-performance GPUs, CPUs, high-speed networking and the supporting power and cooling infrastructure all carry significant capital and operational costs. There is also a substantial embodied carbon cost associated with manufacturing and transporting this hardware, including the extraction and processing of the raw materials required to produce it. Once deployed, the infrastructure continues to incur operational costs through energy consumption, cooling, maintenance and other data-centre requirements. An underutilised cluster therefore represents more than unused capacity: it can mean that expensive hardware and the resources required to operate it are providing relatively little useful computation. Monitoring provides visibility into this relationship, helping operators understand not only whether infrastructure is available, but how effectively it is being used.
+
+This has a direct connection to sustainability. Maximising utilisation means getting more useful computation from the resources that have already been deployed, helping to spread the financial and environmental cost of manufacturing that hardware across a greater amount of useful work. Extending the productive lifetime of infrastructure can further reduce the need to manufacture and deploy replacement capacity, avoiding the associated embodied carbon. Monitoring can identify idle or underutilised accelerators, inefficient workloads, resource contention and other bottlenecks that prevent infrastructure from operating efficiently. In turn, this information can inform scheduling, workload optimisation and capacity planning, helping organisations make better use of their existing investment while reducing unnecessary energy consumption and associated carbon emissions. In this sense, effective monitoring supports both operational efficiency and sustainability: the goal is not simply to keep infrastructure running, but to maximise the useful work delivered over the lifetime of the resources deployed.
+
+<!-- @Todo: Figure representing carbon cost of HPC? / Monetary cost of HPC? -->
 
 ## Keypoints
 
