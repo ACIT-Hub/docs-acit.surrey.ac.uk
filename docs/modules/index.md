@@ -10,7 +10,7 @@
 
     Foundations of accelerated computing for the Research Infrastructure Engineering role.
 
-- :material-chart-line: **[Monitoring for Accelerated Compute](modules/monitoring-for-accelerated-compute.md)**
+- :material-chart-line: **[Monitoring for Accelerated Compute](introduction-to-monitoring/index.md)**
 
     ---
 

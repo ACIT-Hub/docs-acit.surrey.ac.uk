@@ -69,6 +69,6 @@ nav:
           - modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
           - modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
       - Introduction to Monitoring for Accelerated Compute:
-          - Overview: modules/monitoring-for-accelerated-compute/index.md
-          - modules/monitoring-for-accelerated-compute/introduction.md
-          - modules/monitoring-for-accelerated-compute/approaches-and-tools.md
+          - Overview: modules/introduction-to-monitoring/index.md
+          - modules/introduction-to-monitoring/introduction.md
+          - modules/introduction-to-monitoring/approaches-and-tools.md
