@@ -55,7 +55,9 @@ extra_javascript:
 
 plugins:
   - search
-  - h5p
+  - h5p:
+      player_url: assets/h5p-standalone/dist
+  
 
 nav:
   - Home: "index.md"

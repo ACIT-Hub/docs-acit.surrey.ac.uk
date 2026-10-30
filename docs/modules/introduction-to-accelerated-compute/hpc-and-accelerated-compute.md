@@ -222,6 +222,4 @@ Over time, people realised this idea could be used for general‑purpose computa
 
 ## 5. Exercises/Test your learning
 
-![h5p](know-your-compute.h5p)
-
-![h5p](know-your-compute.h5p)
+![h5p](compute-type-quiz_1.h5p)
