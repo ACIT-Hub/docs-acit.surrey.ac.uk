@@ -65,9 +65,9 @@ nav:
       - modules/index.md
       - Introduction to Accelerated Compute and the RIE Role:
           - Overview: modules/introduction-to-accelerated-compute/index.md
-          - modules/introduction-to-accelerated-compute/hpc-and-accelerated-compute.md
-          - modules/introduction-to-accelerated-compute/types-of-accelerators.md
-          - modules/introduction-to-accelerated-compute/rie-role.md
+          - HPC and Accelerated Compute: modules/introduction-to-accelerated-compute/hpc-and-accelerated-compute.md
+          - Types of Accelerators: modules/introduction-to-accelerated-compute/types-of-accelerators.md
+          - The RIE Role: modules/introduction-to-accelerated-compute/rie-role.md
           - Common Junior RIE Tasks: modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
-          - modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
+          - Ethics and Sustainable Compute: modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
       - modules/monitoring-for-accelerated-compute.md
