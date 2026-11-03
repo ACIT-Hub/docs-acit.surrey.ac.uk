@@ -44,9 +44,9 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
     [ Go to section](approaches-and-tools.md)
 
 ??? info "3. Prometheus & Exporters"
-    - pending (E.G. now may split content across Victoria Metrics)
-
-    <!-- [ Go to section](prometheus.md) -->
+    - How are new metrics configured for collection?
+    - How are alerting conditions configured?
+    [ Go to section](prometheus.md)
 
 ??? info "4. Grafana"
     - pending (Awaiting dashboard examples to guide development)
