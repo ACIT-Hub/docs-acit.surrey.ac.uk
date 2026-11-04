@@ -1,10 +1,18 @@
 # Using Prometheus & Exporters
 
-<!-- This chapter needs adapting to see whether we can integrate victoria metrics smoothly -->
+Prometheus and Victoria Metrics are inherently time series databases, which gather and store metrics which can be labelled to help identify their source. Lets breakdown some of these new terms:
+
+| Term        | Explanation                                                                          |
+| ----------- | ------------------------------------------------------------------------------------ |
+| Metric      | A named measurement, such as `node_hwmon_temp_celsius`.                              |
+| Time series |	A sequence of measurements for a particular metric and unique combination of labels. |
+| Label       | A key-value pair that describes a metric, such as |environment="production".         |
+
+It's worth clarifying the distinction between a metric and a time series, `node_hwmon_temp_celsius` is a single metric, which can represent many different time series as a node is likely to contain many different temperature sensors and a cluster is likely to contain many nodes.
 
 ## Setting Up a New Exporters
 
-Prometheus is provided as a standalone executable, which reads from a `.yml` configuration file which may refer to other `.yml` rule files. Prometheus must be restarted if these `.yml` files are changed, as only a small subset of fields (e.g. retention) are runtime reloadable. 
+Prometheus is provided as a stand-alone executable, which reads from a `.yml` configuration file which may refer to other `.yml` rule files. Prometheus must be restarted if these `.yml` files are changed, as only a small subset of fields (e.g. retention) are runtime reloadable. 
 
 If running Prometheus, without any arguments it will look for the configuration `prometheus.yml` in the working directory, akin to: 
 
@@ -58,21 +66,166 @@ Within this block it's possible to override the global defaults, such as `scrape
 
 
 
-## Querying Prometheus Metrics
+## Querying Metrics with PromQL
 
-Labels can be queried with PromQL, to find all linked metrics, e.g. for the above 
+
+<!-- https://prometheus.io/docs/prometheus/latest/querying/basics/ -->
+
+Metrics can be queried in both Prometheus and Victoria Metrics (including via Grafana) with PromQL (Prometheus Query Language).
+
+### Selecting Metrics
+
+
+*Select all metrics matching a label*
+
+To find all linked metrics, e.g. for production environment label before, we can use the following query:
  
 ``` 
 {environment="production"} 
 ``` 
 
-Within Prometheus, selecting "Query" in the navigation bar opens the query view. If the above statement is entered and produces results, the label is working (or exists elsewhere). 
+Within Prometheus, selecting "Query" in the navigation bar opens the query view. If the above statement is entered it should produce results similar to this: 
 
-<!-- @Todo brief explainer on PromQL, how to structure basic queries -->
+<div class="img-box" markdown>
+![The result of querying `{environment="production"}` within Prometheus, after setting up node exporter as explained earlier.](../../assets/images/monitoring/promql-first-query.png){.img-left alt="The Prometheus Query interface, showing the table of results for querying the label environment=production."}
+
+</div>
+*Figure 3*
+
+This basic query however is too broad, it returns all metrics with the production environment label which is everything output by the exporter we created.
+
+*Select a particular metric*
+
+To return all metrics of a specific name, that name can be queried. For example for hardware temperatures there is the metric `node_hwmon_temp_celsius`. However, if this is entered as a query it's likely to return multiple timeseries (generally a node will have multiple temperature sensors).
+
+```
+node_hwmon_temp_celsius
+```
+
+*Filter a metric using labels*
+
+We can filter the query based on any of the labels shown with the curly brackets `{ }` of the results. For example, we can update to only query for the `platform_coretemp_0` chip's sensors 1-3.
+
+```
+node_hwmon_temp_celsius{chip="platform_coretemp_0", sensor=~"temp[1-3]"}
+```
+
+Adding `chip="platform_coretemp_0"`, filtered the query to only return metrics for that specific chip and adding `sensor=~"temp[1-3]` added a more advanced regular expression (Regex) pattern matching filter for sensors matching `temp1`, `temp2` or `temp3`.
+
+
+???+ tip "Regex Notes"
+
+    Regular Expression is an incredibly powerful dialect for defining pattern matching criteria, used widely across all programming languages.
+    
+    If you're new to Regex and need to describe a pattern, you should review the (Regex reference guide](https://www.regular-expressions.info/refcharacters.html) and test your pattern works with one of many [online Regex testing tools](https://regex101.com/) which allow a Regex statement to be tested live on different test strings. They often also provide hints to explain the rules being applied.
+
+    PromQL RegEx statements are fully anchored (they don't permit additional leading/trailing characters), hence `temp[1-3]` is equivalent to `^temp[1-3]$` and would not match the string `"temp11"`
+
+Four string matching operators can be used for labels:
+
+| Operator | Meaning                | Example                       |
+| -------- | ---------------------- | ----------------------------- |
+| `=`      | Exact match            | `chip="platform_coretemp_0"`  |
+| `!=`     | Does not exactly match | `chip!="platform_coretemp_0"` |
+| `=~`     | Regex match            | `sensor=~"temp[1-3]`          |
+| `!~`     | Does not match Regex   | `sensor!~"temp[1-3]`          |
+
+So we can invert the previous sensor filter by replacing `=~` with `!~`:
+
+```
+node_hwmon_temp_celsius{chip="platform_coretemp_0", sensor!~"temp[1-3]"}
+```
+
+It should now only show sensors with `temp4` and higher.
+
+### Functions & Operators
+
+PromQL also supports a range of functions and operators which can be used within queries to process metrics, either by performing operations across a time series or combining multiple time series.
+
+All traditional arithmetic operations can be performed between time series (e.g. addition, through modulo [`%`] and exponent [`^`]), as can comparison operators such as equality [`==`, '!='] and greater/less-than ['>', '<', '>=', <='], set logic (e.g. intersection [`and`], union [`or`], compliment [`unless`]) and aggregation operations (e.g. sum, average).
+
+It's worth reviewing the full [PromQL operators documentation](https://prometheus.io/docs/prometheus/latest/querying/operators/).
+
+Functions are even more widespread, covering basic mathematical functions (e.g. `abs()`) and aggregations (e.g. `avg()`) through to date and histogram operations. 
+
+It's worth reviewing the full [PromQL functions documentation](https://prometheus.io/docs/prometheus/latest/querying/functions/).
+
+*Aggregations*
+
+Aggregations are probably one of the most useful features of PromQL for an RIE, allowing you to answer questions about groups of time series (e.g. across multiple nodes) or reduce the resolution of a time series.
+
+For example:
+
+```
+max(node_hwmon_temp_celsius)
+```
+
+Returns a new time series, which is the maximum of all time series within the `node_hwmon_temp_celsius` metric. It will only be visible within the results graph tab as it is a range query (as opposed to an instant query).
+
+The most commonly used aggregation functions are:
+
+- `sum(v)` for totals.
+- `avg(v)` for averages.
+- `min(v)` for minimum values.
+- `max(v)` for maximum values.
+- `topk(k, v)` largest `k` elements
+- `bottomk(k, v)` smallest `k` elements
+- `count(v)` the number of time series within a metric
+- `count_values(l, v)` the number of elements equal to `l`
+
+Aggregations can be grouped according to a label with `by`, to produce multiple max, for example:
+
+```
+max by(chip)(node_hwmon_temp_celsius)
+```
+
+Displays the maximum temperature across all sensors for each chip.
+
+<div class="img-box" markdown>
+![The result of a Prometheus query, grouping `node_hwmon_temp_celsius` by chip.](../../assets/images/monitoring/promql-grouped-aggregation.png){.img-left alt="A query results interface showing a line graph with two plots hovering around 35 and 50 respectively."}
+
+</div>
+*Figure 4*
+
+Alternatively, you can use `without` to ignore specific labels, for example:
+
+
+```
+max (node_hwmon_temp_celsius) without (sensor)
+```
+
+Returns a plot matching Figure 4, as `max` has been applied across all sensors of each chip.
+
+In practice, you're more likely to group by the `instance` label in a cluster with multiple nodes so that nodes can be compared to expose outliers.
+
+
+*Time-based Queries*
+
+When working with time series metrics, RIEs will often want to investigate how metrics change over time.
+
+For example you could calculate the per-second average rate of increase using a 1 hour wide sliding windows of a metric providing a count.
+
+```
+rate(node_network_receive_bytes_total[1h])
+```
+
+These range queries show how a value changes over time.
+
+There are four types of metrics you might find, which each require different time-based query handling.
+
+| Metric Type | What it measures | Typical use | Time-based Queries |
+| ----------- | ---------------- | ----------- | ------------------ |
+| Counter | A value that only increases, except when reset | Network traffic, CPU time, requests | `rate()` `increase()` |
+| Gauge | A value that can increase or decrease | Temperature, memory usage, CPU utilisation | `avg_over_time()` `max_over_time()` |
+| Histogram | Observations grouped into buckets | Request durations, operation latency | n/a |
+| Summary | Statistical observations over time | Request durations and quantiles | n/a |
+
+
+--------
 
 Prometheus also allows PromQL to be used to define rules, to pre-calculate dependent metrics (recording rules), and to create alerts (alerting rules). These can be defined within separate rule `.yml` files, and will be evaluated at the frequency defined by the evaluation_interval in the main configuration file.
 
-### Recording Rules
+## Recording Rules
 
 Recording rules, which calculate dependent metrics, can avoid the need to re-calculate expensive dependent metrics every time a dashboard is loaded.
  
