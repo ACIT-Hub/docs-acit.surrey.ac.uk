@@ -96,11 +96,19 @@ This basic query however is too broad, it returns all metrics with the productio
 
 *Select a particular metric*
 
-To return all metrics of a specific name, that name can be queried. For example for hardware temperatures there is the metric `node_hwmon_temp_celsius`. However, if this is entered as a query it's likely to return multiple timeseries (generally a node will have multiple temperature sensors).
+To return all metrics of a specific name, that name can be queried. For example for hardware temperatures there is the metric `node_hwmon_temp_celsius`. However, if this is entered as a query it's likely to return multiple time series (generally a node will have multiple temperature sensors).
 
 ```
 node_hwmon_temp_celsius
 ```
+
+Returns multiple time series, each with 3 labels:
+
+- `instance` identifies the monitored node.
+- `chip` identifies a hardware monitoring chip.
+- `sensor` identifies an individual temperature sensor within a `chip`.
+
+Different hardware configurations will have different numbers of chips available per node, and in a cluster there will likely be a unique instance per node.
 
 *Filter a metric using labels*
 
@@ -160,7 +168,7 @@ For example:
 max(node_hwmon_temp_celsius)
 ```
 
-Returns a new time series, which is the maximum of all time series within the `node_hwmon_temp_celsius` metric. It will only be visible within the results graph tab as it is a range query (as opposed to an instant query).
+Returns the maximum value across all time series within the `node_hwmon_temp_celsius` metric. Prometheus displays the overall maximum in the Table tab when using an instant query. In the Graph tab we can instead see how this maximum changes over time as it will be processed as a range query.
 
 The most commonly used aggregation functions are:
 
@@ -171,7 +179,6 @@ The most commonly used aggregation functions are:
 - `topk(k, v)` largest `k` elements
 - `bottomk(k, v)` smallest `k` elements
 - `count(v)` the number of time series within a metric
-- `count_values(l, v)` the number of elements equal to `l`
 
 Aggregations can be grouped according to a label with `by`, to produce multiple max, for example:
 
@@ -187,14 +194,14 @@ Displays the maximum temperature across all sensors for each chip.
 </div>
 *Figure 4*
 
-Alternatively, you can use `without` to ignore specific labels, for example:
+Alternatively, you can use `without` to remove specific labels from the output. The `without` aggregation therefore combines series that differ only by their sensor label. For example:
 
 
 ```
 max (node_hwmon_temp_celsius) without (sensor)
 ```
 
-Returns a plot matching Figure 4, as `max` has been applied across all sensors of each chip.
+Returns a plot matching Figure 4, as `max` has been applied across all sensors of each chip, as the `chip` and `instance` labels were retained. 
 
 In practice, you're more likely to group by the `instance` label in a cluster with multiple nodes so that nodes can be compared to expose outliers.
 
@@ -203,27 +210,48 @@ In practice, you're more likely to group by the `instance` label in a cluster wi
 
 When working with time series metrics, RIEs will often want to investigate how metrics change over time.
 
-For example you could calculate the per-second average rate of increase using a 1 hour wide sliding windows of a metric providing a count.
+`rate()` calculates the average per-second rate of increase of a counter over a specified time window. For example, the following query calculates the average network receive rate over the previous five minutes:
 
 ```
-rate(node_network_receive_bytes_total[1h])
+rate(node_network_receive_bytes_total[5m])
 ```
 
 These range queries show how a value changes over time.
 
 There are four types of metrics you might find, which each require different time-based query handling.
 
-| Metric Type | What it measures | Typical use | Time-based Queries |
+| Metric Type | What it measures | Typical use | Common PromQL functions |
 | ----------- | ---------------- | ----------- | ------------------ |
 | Counter | A value that only increases, except when reset | Network traffic, CPU time, requests | `rate()` `increase()` |
 | Gauge | A value that can increase or decrease | Temperature, memory usage, CPU utilisation | `avg_over_time()` `max_over_time()` |
-| Histogram | Observations grouped into buckets | Request durations, operation latency | n/a |
-| Summary | Statistical observations over time | Request durations and quantiles | n/a |
+| Histogram | Observations grouped into buckets | Request durations, operation latency | `rate()`, `histogram_quantile()` |
+| Summary | Statistical observations over time | Request durations and quantiles | *Usually queried directly* |
+
+*Histograms and summaries are more advanced metric types. Their use and interpretation are beyond the scope of this introduction, but it is useful to recognise them when inspecting unfamiliar metrics.*
+
+
+### Exercise 1
+
+<!-- TODO
+
+(GPT suggestion, requires more thought as I don't like this and need to test common metrics available on a dockerised Prometheus)
+
+Exercise: Exploring temperature metrics
+
+Using the Prometheus instance provided:
+1. Find all temperature metrics available.
+2. Identify which temperature sensors belong to each chip.
+3. Find the highest temperature reported by each chip.
+4. Modify the query to show the highest temperature across the entire node.
+5. Experiment with changing the query time range to observe how temperatures change.
+You could provide the answers in collapsible sections so engineers can check their work.
+
+--->
 
 
 --------
 
-Prometheus also allows PromQL to be used to define rules, to pre-calculate dependent metrics (recording rules), and to create alerts (alerting rules). These can be defined within separate rule `.yml` files, and will be evaluated at the frequency defined by the evaluation_interval in the main configuration file.
+Queries can also be used to define rules, to pre-calculate dependent metrics (recording rules), and to create alerts (alerting rules). These can be defined within separate rule `.yml` files, and will be evaluated at the frequency defined by the evaluation_interval in the main configuration file.
 
 ## Recording Rules
 
