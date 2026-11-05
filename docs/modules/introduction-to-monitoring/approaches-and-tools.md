@@ -29,8 +29,8 @@ The combination of Prometheus and Grafana became popular in HPC due to its flexi
 <!-- @Todo: Review whether this renders correctly -->
 
 <div class="img-box" markdown>
-![A diagram showing a generic network topology of a monitoring stack. The exporters within the HPC cluster and data centre (left) communicate with a Prometheus database, which is visualised to 3 different groups via Grafana Dashboards.](../../assets/images/monitoring/monitoring-stack-topology.png){.img-left alt="Monitoring stack topology showing exporters in an HPC cluster and server room sending data to a Prometheus database. Prometheus feeds Grafana dashboards, which are used by users, RIEs, and stakeholders."}
-
+![Monitoring stack topology showing exporters in an HPC cluster and server room sending data to a Prometheus database. Prometheus feeds Grafana dashboards, which are used by users, RIEs, and stakeholders.](../../assets/images/monitoring/monitoring-stack-topology.png)
+A diagram showing a generic network topology of a monitoring stack. The exporters within the HPC cluster and data centre (left) communicate with a Prometheus database, which is visualised to 3 different groups via Grafana Dashboards.
 </div>
 *Figure 1*
 
@@ -84,7 +84,8 @@ The above summary is not exhaustive, other hardware solutions will normally have
 
 <!-- @todo Replace this with a submit case-study dashboard -->
 <div class="img-box" markdown>
-![An example Grafana Dashboard from a HPC system.](../../assets/images/monitoring/generic-grafana-dashboard.png){.img-left alt="A Grafana dashboard showing..."}
+![A Grafana dashboard showing...](../../assets/images/monitoring/generic-grafana-dashboard.png)
+An example Grafana Dashboard from a HPC system.
 </div>
 *Figure 2*
 

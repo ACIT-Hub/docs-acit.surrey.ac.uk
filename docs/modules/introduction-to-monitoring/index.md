@@ -1,4 +1,5 @@
 # Introduction to Monitoring for Accelerated Compute
+
 ## Overview
 
 Monitoring is the process of regularly collecting information about how a project, service, or system is performing. As a junior Research Infrastructure Engineer (RIE), you may be responsible for clusters, GPU nodes, storage systems or research platforms that many users depend on. Without monitoring, problems can go unnoticed until users complain, resources can be wasted, and it becomes very hard to understand how your systems are really behaving. Monitoring allows you to spot issues early, make evidence-based decisions, and explain what is happening to colleagues and users.
@@ -23,7 +24,7 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
     - [Performance profiling and optimisation][direct-performance_profiling]. 
     - [Cost modelling][direct-cost_modelling]. 
 
-[direct]: https://directframework.com/framework/skills_and_competencies/#computing-infrastructures-and-systems
+[direct]: https://directframework.com/framework/skills_and_competencies/#digital-research-infrastructures
 [direct-job_scheduling]: https://directframework.com/framework/skills/job-scheduling-and-resource-management/
 [direct-performance_profiling]: https://directframework.com/framework/skills/performance-analysis-and-optimisation/
 [direct-cost_modelling]: https://directframework.com/framework/skills/cost-modelling/
