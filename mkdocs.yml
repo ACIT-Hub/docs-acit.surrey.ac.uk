@@ -70,4 +70,8 @@ nav:
           - The RIE Role: modules/introduction-to-accelerated-compute/rie-role.md
           - Common Junior RIE Tasks: modules/introduction-to-accelerated-compute/common-junior-rie-tasks.md
           - Ethics and Sustainable Compute: modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
-      - modules/monitoring-for-accelerated-compute.md
+      - Introduction to Monitoring for Accelerated Compute:
+          - Overview: modules/introduction-to-monitoring/index.md
+          - modules/introduction-to-monitoring/introduction.md
+          - modules/introduction-to-monitoring/approaches-and-tools.md
+          - modules/introduction-to-monitoring/prometheus.md
