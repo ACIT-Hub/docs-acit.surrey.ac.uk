@@ -74,3 +74,4 @@ nav:
           - Overview: modules/introduction-to-monitoring/index.md
           - modules/introduction-to-monitoring/introduction.md
           - modules/introduction-to-monitoring/approaches-and-tools.md
+          - modules/introduction-to-monitoring/prometheus.md

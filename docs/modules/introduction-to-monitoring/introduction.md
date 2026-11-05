@@ -12,7 +12,7 @@ Monitoring is the process of regularly collecting information about how a projec
 By watching or analysing this data, sometimes supported by dashboard, automated notifications and other tools, issues can be caught early before they cause a detriment to users (or budgets). Monitoring helps turn potential crises for RIEs, into almost routine work.
 
 
-???+ note "A monitoring scenario:"
+!!! example "A monitoring scenario"
 
     An RIE arrived one morning to find their cluster under heavy load with several critical services behaving erratically. Without monitoring, the root cause would have only became obvious once users’ jobs began to fail causing them to start filing tickets.
     
