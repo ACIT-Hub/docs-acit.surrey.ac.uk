@@ -22,18 +22,16 @@ If running Prometheus, without any arguments it will look for the configuration 
 
 In practice, your Prometheus server will likely be configured to run as a service on a server rather than your local machine, so that it’s accessible to the whole team and automatically restarts. Check locally with your team about how to access Prometheus, and how it can be restarted when reconfiguring. For teaching purposes, here we’ll continue running it manually on the command line.
 
-When running, by default it will serve a status page at http://localhost:9090, which provides querying and basic dashboard facilities for collected metrics. We’ll cover structuring Prometheus queries later in this chapter, as they can be useful when investigating spurious metrics.
+When running, by default it will serve a status page at [http://localhost:9090](http://localhost:9090), which provides querying and basic dashboard facilities for collected metrics. We’ll cover structuring Prometheus queries later in this chapter, as they can be useful when investigating spurious metrics.
 
 Each exporter that Prometheus scrapes from, will host a small web server with a `/metrics` path. The location of each exporter must be configured within Prometheus’ configuration `.yml`.
 
-If we download and execute [node_exporter](https://github.com/prometheus/node_exporter), which reports metrics about a local node, by default it will serve http://localhost:9100/metrics (each exporter will likely have a different default port, although this will often be configurable).
+If we download and execute [node_exporter](https://github.com/prometheus/node_exporter), which reports metrics about a local node, by default it will serve [http://localhost:9100/metrics](http://localhost:9100/metrics) (each exporter will likely have a different default port, although this will often be configurable).
  
 Under the `scrape_configs` section of the Prometheus config `.yml`, we can then specify the exporter to be scraped:
 
-```yml {title="prometheus.yml"}
-
+```yml {title="prometheus.yml#scrape_configs"}
   # Specify a new job for our node exporter 
-
   - job_name: "node exporter" 
     scrape_interval: 1s # Override global scrape interval 
     static_configs: 
@@ -48,15 +46,15 @@ Within this block it's possible to override the global defaults, such as `scrape
 
 ???+ tip "`.yml` Mistakes"
 
-    As the configuration is .yml indentation is very strict. If Prometheus is unable to read your updated configuration, an error will be produced, and it will fail to start. This error will usually specify either the affected line or section of the configuration where parsing failed. 
+    As the configuration is `.yml` indentation is very strict. If Prometheus is unable to read your updated configuration, an error will be produced, and it will fail to start. This error will usually specify either the affected line or section of the configuration where parsing failed. 
 
-    E.g. the below error was produced when `labels` was indented by 2 additional spaces 
+    For example, the below error was output when `labels` was indented by 2 additional spaces 
     
     ``` 
     time=2026-09-30T10:33:43.292+01:00 level=ERROR source=main.go:768 msg="Error loading config (--config.file=prometheus.yml)" file=/home/rob/prometheus/prometheus-3.15.0.linux-amd64/prometheus.yml err="parsing YAML file prometheus.yml: yaml: unmarshal errors:\n  line 41: cannot unmarshal !!map into string" 
     ``` 
 
-    Likewise, it’s possible to add a spurious `-` to labels, leading to labelling a null target. This will build, but the label won’t be present in any scraped data. 
+    Likewise, it’s possible to add a spurious `-` to `labels`, leading to labelling a null target. This will build, but the label won’t be present in any scraped data. 
 
 
 ??? note "Victoria Metrics Differences"
@@ -69,9 +67,9 @@ Within this block it's possible to override the global defaults, such as `scrape
     
     It will then be available at 
     
-    http://localhost:8428
+    [http://localhost:8428](http://localhost:8428)
     
-    *Things will be a little bit different if Victoria Metrics: cluster version is being used, so check with your team to understand your local configuration.*
+    *Things will be a little bit different if the cluster version of Victoria Metrics is being used, so check with your team to understand your local configuration.*
 
 ## Querying Metrics with PromQL
 
@@ -83,7 +81,7 @@ Metrics can be queried in both Prometheus and Victoria Metrics (including via Gr
 ### Selecting Metrics
 
 
-*Select all metrics matching a label*
+#### Select all metrics matching a label
 
 To find all linked metrics, e.g. for production environment label before, we can use the following query:
  
@@ -101,9 +99,9 @@ The result of querying `{environment="production"}` within Prometheus, after set
 
 This basic query however is too broad, it returns all metrics with the production environment label which is everything output by the exporter we created.
 
-*Select a particular metric*
+#### Selecting a particular metric
 
-To return all metrics of a specific name, that name can be queried. For example for hardware temperatures there is the metric `node_hwmon_temp_celsius`. However, if this is entered as a query it's likely to return multiple time series (generally a node will have multiple temperature sensors).
+To return all time series for a specific metric, that metric's name can be queried. For example for hardware temperatures there is the metric `node_hwmon_temp_celsius`. 
 
 ```PromQL  {title="PromQL Query"}
 node_hwmon_temp_celsius
@@ -115,11 +113,11 @@ Returns multiple time series, each with 3 labels:
 - `chip` identifies a hardware monitoring chip.
 - `sensor` identifies an individual temperature sensor within a `chip`.
 
-Different hardware configurations will have different numbers of chips available per node, and in a cluster there will likely be a unique instance per node.
+Different hardware configurations will have different numbers of chips available per node, and in a cluster there will likely be a unique instance per node. Hence, why multiple time series with different labels are returned.
 
-*Filter a metric using labels*
+#### Filter a metric using labels
 
-We can filter the query based on any of the labels shown with the curly brackets `{ }` of the results. For example, we can update to only query for the `platform_coretemp_0` chip's sensors 1-3.
+We can filter the query based on any of the labels shown within the curly brackets `{ }` of the results. For example, we can update to only query for the `platform_coretemp_0` chip's sensors 1-3.
 
 ```PromQL  {title="PromQL Query"}
 node_hwmon_temp_celsius{chip="platform_coretemp_0", sensor=~"temp[1-3]"}
@@ -132,7 +130,7 @@ Adding `chip="platform_coretemp_0"`, filtered the query to only return metrics f
 
     Regular Expressions are a powerful dialect for defining pattern matching criteria, used widely across all programming languages.
     
-    If you're new to Regex and need to describe a pattern, you should review the [Regex reference guide](https://www.regular-expressions.info/refcharacters.html) and test your pattern works with one of many [online Regex testing tools](https://regex101.com/) which allow a Regex statement to be tested live on different test strings. They often also provide hints to explain the rules being applied.
+    If you're new to Regex and need to describe a pattern, you should review the [Regex reference guide](https://www.regular-expressions.info/refcharacters.html) and test your pattern works with one of many [online Regex testing tools](https://regex101.com/) which allow a Regex statement to be tested live on different test strings. These online testing tools often also provide hints to explain the rules being applied.
 
     PromQL RegEx statements are fully anchored (they don't permit additional leading/trailing characters), hence `temp[1-3]` is equivalent to `^temp[1-3]$` and would not match the string `"temp11"`
 
@@ -151,7 +149,7 @@ Therefore, the previous sensor filter can be inverted by replacing `=~` with `!~
 node_hwmon_temp_celsius{chip="platform_coretemp_0", sensor!~"temp[1-3]"}
 ```
 
-It will now only show sensors with `temp4` and higher.
+It will now only show sensors with `temp4`, `temp5` and higher.
 
 ### Functions & Operators
 
@@ -196,8 +194,8 @@ max by(chip) (node_hwmon_temp_celsius)
 Displays the maximum temperature across all sensors for each chip.
 
 <div class="img-box" markdown>
-![The result of a Prometheus query, grouping `node_hwmon_temp_celsius` by chip.](../../assets/images/monitoring/promql-grouped-aggregation.png){.img-left alt="A query results interface showing a line graph with two plots hovering around 35 and 50 respectively."}
-
+![A query results interface showing a line graph with two plots hovering around 35 and 50 respectively.](../../assets/images/monitoring/promql-grouped-aggregation.png)
+The result of a Prometheus query, grouping `node_hwmon_temp_celsius` by chip.
 </div>
 *Figure 4*
 
@@ -229,8 +227,8 @@ There are four types of metrics you might find, which each require different tim
 
 | Metric Type | What it measures | Typical use | Common PromQL functions |
 | ----------- | ---------------- | ----------- | ------------------ |
-| Counter | A value that only increases, except when reset | Network traffic, CPU time, requests | `rate()` `increase()` |
-| Gauge | A value that can increase or decrease | Temperature, memory usage, CPU utilisation | `avg_over_time()` `max_over_time()` |
+| Counter | A value that only increases, except when reset | Network traffic, CPU time, requests | `rate()`, `increase()` |
+| Gauge | A value that can increase or decrease | Temperature, memory usage, CPU utilisation | `avg_over_time()`, `max_over_time()` |
 | Histogram | Observations grouped into buckets | Request durations, operation latency | `rate()`, `histogram_quantile()` |
 | Summary | Statistical observations over time | Request durations and quantiles | *Usually queried directly* |
 
@@ -269,35 +267,24 @@ The below demonstrates an example rule file which defines the record `code:prome
 
 ```yml  {title="rules/http_sum.yml"}
 groups:
-
   # Name of the group, must be unique within the rule file
-
 - name: example
-
   interval: 1m # How often the rule is evaluated, overrides global.evaluation_interval
-
   rules:
-
     # Name of the record to produce  
-
   - record: prometheus_http_requests_total:sum_by_code  
-
     # PromQL expression to evaluate at each evaluation interval.
-
     expr: sum by (code) (prometheus_http_requests_total) 
 ```
 
 If this rule file is saved as `http_sum.yml` in a `rules` subdirectory, it can be added to Prometheus’ configuration within the `rules_files` section.
 
 ```yml {title="prometheus.yml"}
-
 rule_files: 
-
   - "rules/http_sum.yml" 
-
 ```
 
-Now when Prometheus is started metrics with the name `prometheus_http_requests_total:sum_by_code` will be collected.
+Now when Prometheus is started, a new metric with the name `prometheus_http_requests_total:sum_by_code` will be collected.
 
 ### Alerting Rules
 

@@ -1,4 +1,4 @@
-# Approaches and Tools
+# Approaches & Tools
 
 <!-- This whole chapter needs a review with victoria metrics in mind -->
 
@@ -10,7 +10,7 @@ By the end of this chapter, you will be able to:
 
 ## How is Monitoring Performed?
 
-Monitoring generally involves a full software stack. Multiple exporters, collect and export different metrics from a cluster, exports are gathered and collated in a monitoring database, which can then be visualised and alert conditions configured via a dashboard. 
+Monitoring generally involves a full software stack. Multiple exporters, collect and export different metrics from a cluster, metrics are gathered and collated in a monitoring database, which can then be visualised and alert conditions configured via a dashboard. 
 
 These three components can be interchangeable, however most HPC has now standardised around a Prometheus monitoring database, with Grafana dashboards. Prometheus has a wide range of supported exporters to cover most typical metrics and Grafana can consume data from a wide range of sources in addition to Prometheus. More recently Victoria Metrics has appeared as a challenger to Prometheus, however it is compatible with Prometheus' exporters and supports the same query language, so the skills taught within this course are transferable.
 
@@ -36,7 +36,7 @@ A diagram showing a generic network topology of a monitoring stack. The exporter
 
 ## Monitoring Database & Exporters
 
-Prometheus is an open-source database and related tools, specifically designed to support monitoring. It offers tools for the full-monitoring stack, including dashboards and alerts, however due to its interoperability, it is most often used for its server which acts as a central database for storing and querying monitoring timeseries. Victoria metrics is very similar in what it offers, however it has been designed to maximise compatibility with and existing Prometheus monitoring stack.
+Prometheus is an open-source database and related collection of tools, specifically designed to support monitoring. It offers tools for the full-monitoring stack, including dashboards and alerts, however due to its interoperability, it is most often used for its server which acts as a central database for storing and querying monitoring metrics. Victoria metrics is very similar in what it offers, however it has been designed to maximise compatibility with an existing Prometheus monitoring stack.
 
 Prometheus operates with a pull-based scraping model, where it scrapes from attached exporters at regular intervals. It is also possible to configure for how long the metrics will be retained within the database. 
 
@@ -54,19 +54,20 @@ Whilst you could manually probe SLURM for scheduler metrics, [SLURM exporter](ht
 
 ### NVIDIA DCGM (GPU) Exporter 
 
-If a cluster contains NVIDIA GPU’s it’s likely to use NVIDIA’s [DCGM Exporter](https://github.com/NVIDIA/dcgm-exporter) which exposes detailed metrics from NVIDIA GPUs via the Data Centre GPU Manager (DCGM). This includes GPU utilization, memory usage, temperature, power draw, ECC errors, NVLink status and other hardware health and performance data from each GPU across the cluster. 
+If a cluster contains NVIDIA GPUs it’s likely to use NVIDIA’s [DCGM Exporter](https://github.com/NVIDIA/dcgm-exporter) which exposes detailed metrics from NVIDIA GPUs via the Data Centre GPU Manager (DCGM). This includes GPU utilization, memory usage, temperature, power draw, ECC errors, NVLink status and other hardware health and performance data from each GPU across the cluster. 
 
 ### AMD’s Service Monitor 
 
-Likewise, if a cluster contains AMD GPUs, a [service monitor](https://instinct.docs.amd.com/projects/gpu-operator/en/latest/metrics/prometheus.html) can be created to export to Prometheus relevant AMD GPU information produced by their Device Metrics Exporter. Information includes temperature, utilisation, memory usage, power consumption, PCIe bandwidth and performance metrics. 
+Likewise, if a cluster contains AMD GPUs, a [service monitor](https://instinct.docs.amd.com/projects/gpu-operator/en/latest/metrics/prometheus.html) can be created to export relevant AMD GPU information produced by their Device Metrics Exporter. Information includes temperature, utilisation, memory usage, power consumption, PCIe bandwidth and performance metrics. 
 
 ### Infiniband Exporter 
 
-If a cluster for instance utilises InfiniBand for high-bandwidth communication between nodes, it would make sense to add monitoring the entire InfiniBand fabric. These metrics would include the count of occurrences for each specific errors, and potentially utilisation information such as the number of packets sent. 
+If a cluster utilises InfiniBand for high-bandwidth communication between nodes, it would make sense to add monitoring the entire InfiniBand fabric. These metrics would include the count of occurrences for each specific errors, and potentially utilisation information such as the number of packets sent. 
 
 ### Lustre Exporter
 
 The file systems used by a cluster, such as Lustre, will have exporters to monitor error counts and access metadata to help catch hardware failures and identify problematic jobs. 
+
 
 ### Bespoke Exporters
 
@@ -88,6 +89,14 @@ The above summary is not exhaustive, other hardware solutions will normally have
 An example Grafana Dashboard from a HPC system.
 </div>
 *Figure 2*
+
+Grafana is a query and visualisation front-end, which allows users to import metrics from Prometheus and other sources and configure bespoke dashboards with a large range of visualisation components to meet requirements. It does not collect or store any metrics itself.
+
+In addition to building dashboards from scratch, it is possible to import (and modify) dashboards. Public dashboard, available from [Grafana's website](https://grafana.com/grafana/dashboards/) are sometimes imported as starting points, but they are often too general (showing every metric an exporter provides) and are typically customized to surface only the most actionable information for a given system or team.
+
+Grafana can also be used to configure alert conditions. Grafana-managed alerts are particularly useful when metrics come from sources beyond Prometheus. In addition, Grafana can display and help manage Prometheus alert rules.
+
+Despite its front-end focus, both Grafana dashboards and alerting rules can be exported and provisioned as plain-text JSON or YAML, making them reproducible across systems.
 
 ## Keypoints
 

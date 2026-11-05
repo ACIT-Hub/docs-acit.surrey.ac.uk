@@ -9,14 +9,14 @@ By the end of this chapter, you will be able to:
 
 Monitoring is the process of regularly collecting information about how a project, service, or system is performing.
 
-By watching or analysing this data, sometimes supported by dashboard, automated notifications and other tools, issues can be caught early before they cause a detriment to users (or budgets). Monitoring helps turn potential crises for RIEs, into almost routine work.
+By watching or analysing this data, supported by dashboards, automated notifications and other tools, issues can be caught early before they cause a detriment to users (or budgets). Monitoring helps turn potential crises for RIEs, into almost routine work.
 
 
 !!! example "A monitoring scenario"
 
     An RIE arrived one morning to find their cluster under heavy load with several critical services behaving erratically. Without monitoring, the root cause would have only became obvious once users’ jobs began to fail causing them to start filing tickets.
     
-    Because their team maintain monitoring dashboard, which provide continuous high-level view of storage health, node status and service metrics, the RIE was able to identify the early warning signs of a slowly degrading filesystem, which had started the previous evening. This allowed them to perform a quick investigation to confirm the issue, before performing a controlled failover allowing the problem to be resolved before most users noticed.
+    Because their team maintains monitoring dashboard, which provide continuous high-level view of storage health, node status and service metrics, the RIE was able to identify the early warning signs of a slowly degrading filesystem, which had started the previous evening. This allowed them to perform a quick investigation to confirm the issue, before performing a controlled failover allowing the problem to be resolved before most users noticed.
     
     Monitoring avoided a chaotic morning of reactive troubleshooting and replaced it with a brief planned intervention.
     
@@ -38,7 +38,7 @@ Users may benefit from monitoring their workload statistics, to understand the p
 
 Likewise, stakeholders among management are often keen to monitor utilisation of their investment in the cluster. This could help to evidence how a cluster should be extended, or opportunities to improve sustainability (and reduce energy costs) by taking lower utilised nodes offline during quiet periods. 
 
-As a junior RIE you may be expected to setup new dashboards from scratch, or configure initialisation workflows to automatically extend monitoring to new hardware. Likewise, you will need to understand the environment and chain of command locally, so that you can respond appropriately when monitoring highlights a metric requiring action.
+As a junior RIE you may be expected to setup new dashboards from scratch, or configure initialisation workflows to automatically extend monitoring to new hardware. Likewise, you will need to understand the environment and chain of command locally, so that you can respond appropriately when monitoring surfaces an actionable metric.
 
 ## Why monitor?
 
