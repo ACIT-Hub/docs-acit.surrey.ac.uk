@@ -145,7 +145,7 @@ Four string matching operators can be used for labels:
 
 Therefore, the previous sensor filter can be inverted by replacing `=~` with `!~`:
 
-```
+```PromQL  {title="PromQL Query"}
 node_hwmon_temp_celsius{chip="platform_coretemp_0", sensor!~"temp[1-3]"}
 ```
 
