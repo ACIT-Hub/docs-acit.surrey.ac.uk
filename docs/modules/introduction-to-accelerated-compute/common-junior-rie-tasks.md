@@ -293,7 +293,7 @@ From the list above, pick a tool you haven’t heard of. Research this tool to d
 
 As you progress, you will move from following existing runbooks and instructions to helping design and improve them. The aim of this introductory module is not to make you an expert in all these tasks, but to give you a clear picture of what junior RIEs do and a detailed starting point for learning the terminology and workflows you will encounter. 
 
-Try it yourself: RIE scenarios 
+### Try it yourself: RIE scenarios 
 
 **Scenario: GPU job pending** 
 
@@ -302,5 +302,4 @@ Try it yourself: RIE scenarios
 **Scenario: New project storage** 
 
 **Scenario: Account creation**
-
 ![h5p](scenario-account-creation-3.h5p)
