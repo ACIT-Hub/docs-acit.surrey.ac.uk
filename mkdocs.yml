@@ -4,7 +4,7 @@ site_description: Documentation to help you learn, operate and understand resear
 
 theme:
   logo: assets/images/ACIT_logo_white_background.png
-  favicon: assets/images/ACIT_logo_white_background.png
+  favicon: assets/images/acit-favicon.png
   name: material
   palette:
     - scheme: default
