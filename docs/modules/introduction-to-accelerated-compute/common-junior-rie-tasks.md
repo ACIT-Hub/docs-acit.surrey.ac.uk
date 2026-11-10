@@ -49,8 +49,6 @@ A typical workflow might look like this:
   - Inform the user that access is ready and provide links to documentation. 
 
 
-![h5p](scenario-account-creation-3.h5p)
-
 
 ### 2. Software Installation on an HPC Cluster  
 
@@ -295,9 +293,14 @@ From the list above, pick a tool you haven’t heard of. Research this tool to d
 
 As you progress, you will move from following existing runbooks and instructions to helping design and improve them. The aim of this introductory module is not to make you an expert in all these tasks, but to give you a clear picture of what junior RIEs do and a detailed starting point for learning the terminology and workflows you will encounter. 
 
+Try it yourself: RIE scenarios 
 
-test
+**Scenario: GPU job pending** 
 
 ![h5p](slurm-job-issue.h5p)
 
+**Scenario: New project storage** 
 
+**Scenario: Account creation**
+
+![h5p](scenario-account-creation-3.h5p)
