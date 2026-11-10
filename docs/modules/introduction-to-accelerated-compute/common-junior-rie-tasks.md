@@ -295,11 +295,11 @@ As you progress, you will move from following existing runbooks and instructions
 
 ### 8. Try it yourself: RIE scenarios 
 
-**Scenario: GPU job pending** 
+**Scenario 1: GPU job pending** 
 
 ![h5p](slurm-job-issue.h5p)
 
-**Scenario: New project storage** 
+**Scenario 2: New project storage** 
 
-**Scenario: Account creation**
+**Scenario 3: Account creation**
 ![h5p](scenario-account-creation-3.h5p)
