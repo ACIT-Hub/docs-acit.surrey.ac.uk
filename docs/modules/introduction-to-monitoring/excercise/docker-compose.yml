@@ -1,0 +1,42 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'          # allows reload without restart
+    restart: unless-stopped
+    depends_on:
+      - node-exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:   # can be updated to modify Grafana credentials
+      - GF_SECURITY_ADMIN_USER=learning
+      - GF_SECURITY_ADMIN_PASSWORD=learning
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+      
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+
+volumes:
+  prometheus-data:
+  grafana-data:
