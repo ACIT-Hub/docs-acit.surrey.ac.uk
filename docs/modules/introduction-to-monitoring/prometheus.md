@@ -63,7 +63,7 @@ Within this block it's possible to override the global defaults, such as `scrape
 
     As explained earlier, add a label `acit` to the node exporter scrape target and override it's scrape interval to be one second.
 
-    *Once node exporter has been added as a scrape target to Prometheus, it will take time for Prometheus to gather metrics from the new source. To quickly check whether it has been configured correctly, visit http://localhost:9090/targets where it should be listed with the name you gave it.*
+    *Once node exporter has been added as a scrape target to Prometheus, it will take time for Prometheus to gather metrics from the new source. To quickly check whether it has been configured correctly, visit [http://localhost:9090/targets](http://localhost:9090/targets) where it should be listed with the name you gave it.*
     
     
     ??? tip "Prometheus not running after restart?"
@@ -94,7 +94,7 @@ Within this block it's possible to override the global defaults, such as `scrape
         docker compose up -d
         ```
 
-        If working correctly, http://localhost:9090/targets should now contain a box titles "node_exporter" which will be shown as "up" in the top right corner.
+        If working correctly, [http://localhost:9090/targets](http://localhost:9090/targets) should now contain a box titles "node_exporter" which will be shown as "up" in the top right corner.
         
 
 ??? note "Victoria Metrics Differences"
