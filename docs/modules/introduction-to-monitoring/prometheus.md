@@ -419,7 +419,7 @@ Now when Prometheus is restarted, a new metric with the name `prometheus_http_re
     
     This will require writing a mathematical PromQL expression combining the available memory and the total memory metrics.
     
-    You can check whether the rule has been loaded by visiting http://localhost:9090/rules
+    You can check whether the rule has been loaded by visiting [http://localhost:9090/rules](http://localhost:9090/rules)
 
     ??? success "Solution"
     
@@ -450,7 +450,7 @@ Now when Prometheus is restarted, a new metric with the name `prometheus_http_re
         docker compose up -d
         ```
         
-        Visit http://localhost:9090/rules, and it should now show a section `node_rules` containing the rule `instance:node_memory_usage:percent`.
+        Visit [http://localhost:9090/rules](http://localhost:9090/rules), and it should now show a section `node_rules` containing the rule `instance:node_memory_usage:percent`.
 
 ### Alerting Rules
 
