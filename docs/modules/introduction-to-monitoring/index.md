@@ -30,6 +30,10 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
 [direct-cost_modelling]: https://directframework.com/framework/skills/cost-modelling/
 
 
+???+ warning "Exercise Requirements"
+    In order to complete the practical exercises within this training, access to a machine where docker containers can be executed in required. A small `docker-compose.yml` and associated monitoring configurations are provided in the first exercise where this environment is setup.
+
+
 ## Sections
 
 ??? info "1. Introduction"

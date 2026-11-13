@@ -98,10 +98,39 @@ Grafana can also be used to configure alert conditions. Grafana-managed alerts a
 
 Despite its front-end focus, both Grafana dashboards and alerting rules can be exported and provisioned as plain-text JSON or YAML, making them reproducible across systems.
 
+
+!!! question "Exercise 1: Setup"
+
+    *This exercise will walk you through running a set of docker containers to host a small local monitoring stack for learning. It's important we set it up early, so that metrics have time to gather that can be queried later on.*
+    
+    <!-- @todo: need to resolve the link to a downloadable archive -->
+    
+    Download the training environment from here, and extract the files. Open a terminal in the root of the extracted files so that docker can be started.
+
+    `docker compose up -d` will initialise and run the training environment.
+
+    - Prometheus running at http://localhost:9090/
+    - Grafana running at http://localhost:3000/
+        - Username and password are both `learning`
+        - Prometheus has already been configured
+    - Node exporter is running at http://localhost:9100/
+        - This has not been added to Prometheus *(That will be the first exercise).
+
+    **Check that each of these pages are reachable!**
+
+    If Prometheus or Grafana require restarting during later exercises, you can shutdown and restart the containers with.
+
+    ```sh
+    docker compose down
+    docker compose up -d
+    ```
+
+    Also remember to shutdown the containers when you have completed all of the exercises.
+
 ## Keypoints
 
 - Different accelerated compute components use different exporters to expose their metrics.
-- Prometheus and Victoria Metrics are timeseries databases commonly used in monitoring software stacks, capable of fetching and storing data produced by exporters.
+- Prometheus and Victoria Metrics are time-series databases commonly used in monitoring software stacks, capable of fetching and storing data produced by exporters.
 - Grafana is a dashboard tool commonly used for visualising collected metrics.
 
 <!-- @Todo: These require review/refinement, quickly drafted when porting page from word doc. -->

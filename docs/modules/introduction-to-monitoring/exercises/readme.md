@@ -32,6 +32,19 @@ As explained earlier, add a label `acit` to the node exporter scrape target and 
 
 *Once node exporter has been added as a scrape target to Prometheus, it will take time for Prometheus to gather metrics from the new source. To quickly check whether it has been configured correctly, visit http://localhost:9090/targets where it should be listed with the name you gave it.*
 
+<details>
+<summary>Prometheus not running?</summary>
+When making changes to Prometheus' configuration, it's possible to introduce a syntax error which will prevent it from starting.
+
+If Prometheus doesn't appear to be running, try checking the output logs which might highlight a syntax error.
+
+```sh
+docker compose logs prometheus
+```
+
+<details>
+
+
 **Ensure you leave docker running, so that metrics can be collected for the following exercises!**
 
 <details>
