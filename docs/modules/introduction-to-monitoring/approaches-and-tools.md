@@ -107,12 +107,12 @@ Despite its front-end focus, both Grafana dashboards and alerting rules can be e
 
     `docker compose up -d` will initialise and run the training environment.
 
-    - Prometheus running at [http://localhost:9090](http://localhost:9090)
-    - Grafana running at [http://localhost:3000](http://localhost:3000)
+    - Prometheus is running at [http://localhost:9090](http://localhost:9090)
+    - Grafana is running at [http://localhost:3000](http://localhost:3000)
         - Username and password are both `learning`
         - Prometheus has already been configured
     - Node exporter is running at [http://localhost:9100](http://localhost:9100)
-        - This has not been added to Prometheus *(That will be the first exercise).
+        - This has not been added to Prometheus *(That is the first exercise)*.
 
     **Check that each of these pages are reachable!**
 
