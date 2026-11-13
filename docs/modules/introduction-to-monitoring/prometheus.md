@@ -411,7 +411,46 @@ rule_files:
   - "rules/http_sum.yml" 
 ```
 
-Now when Prometheus is started, a new metric with the name `prometheus_http_requests_total:sum_by_code` will be collected.
+Now when Prometheus is restarted, a new metric with the name `prometheus_http_requests_total:sum_by_code` will be collected. Once the rule is first executed, it will calculate the metric for all historic data that was collected so that it can be used straight away.
+
+!!! question "Exercise 4: Adding a recording rule"
+
+    Create a rule which calculates a new metric, presenting the node's available memory as a percentage. You should be able to find relevant metrics output by node exporter which you configured earlier (e.g. `node_memory_...`).
+    
+    This will require writing a mathematical PromQL expression combining the available memory and the total memory metrics.
+    
+    You can check whether the rule has been loaded by visiting http://localhost:9090/rules
+
+    ??? success "Solution"
+    
+        Create a new rules file `prometheus/rules.yml`:
+
+        ```yml
+        groups:
+          - name: node_rules
+            rules:
+              - record: instance:node_memory_usage:percent
+                expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100
+        ```
+        
+        Update the Prometheus configuration file `prometheus/prometheus.yml` to include the rules file. If the `rule_files:` section does not already exist, it will need adding at the same indentation level as `scrape_configs`.
+        
+        ```yml
+        rule_files:
+          - "rules.yml"
+          
+        scrape_configs:
+            ...
+        ```
+        
+        Once these files have been created and updated, restart Prometheus.
+        
+        ```sh
+        docker compose down
+        docker compose up -d
+        ```
+        
+        Visit http://localhost:9090/rules, and it should now show a section `node_rules` containing the rule `instance:node_memory_usage:percent`.
 
 ### Alerting Rules
 
