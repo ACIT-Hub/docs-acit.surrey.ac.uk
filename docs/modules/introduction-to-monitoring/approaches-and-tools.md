@@ -103,9 +103,7 @@ Despite its front-end focus, both Grafana dashboards and alerting rules can be e
 
     *This exercise will walk you through running a set of docker containers to host a small local monitoring stack for learning. It's important we set it up early, so that metrics have time to gather that can be queried later on.*
     
-    <!-- @todo: need to resolve the link to a downloadable archive -->
-    
-    Download the training environment from here, and extract the files. Open a terminal in the root of the extracted files so that docker can be started.
+    Download the training environment from [here](monitoring-exercises.zip), and extract the files. Open a terminal in the root of the extracted files so that docker can be started.
 
     `docker compose up -d` will initialise and run the training environment.
 

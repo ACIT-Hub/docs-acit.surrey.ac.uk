@@ -57,6 +57,11 @@ plugins:
   - search
   - h5p:
       player_url: assets/h5p-standalone/dist
+  - zip_folders:
+      folders:
+        - modules/introduction-to-monitoring/monitoring-exercises
+      formats:
+        - zip # or tar.gz
   
 
 nav:
