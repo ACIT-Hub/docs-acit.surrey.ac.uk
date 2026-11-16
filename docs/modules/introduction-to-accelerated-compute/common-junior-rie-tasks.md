@@ -296,8 +296,7 @@ As you progress, you will move from following existing runbooks and instructions
 ### 8. Try it yourself: RIE scenarios 
 
 **Scenario 1: GPU job pending** 
-
-![h5p](slurm-job-issue.h5p)
+![h5p](gpu-troubleshooting-quiz.h5p)
 
 **Scenario 2: New project storage** 
 
