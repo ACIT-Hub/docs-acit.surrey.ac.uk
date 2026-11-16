@@ -1,4 +1,4 @@
-# Research Infrastructure Engineering
+# Accelerated Compute Infrastructure Training
 
 Documentation to help you learn, operate and understand research computing infrastructure.
 
