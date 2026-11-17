@@ -20,6 +20,8 @@ Initially, before multi-core systems had been invented, if you wanted more compu
 <div class="img-box" markdown>
 ![Logo](../../assets/images/mutli-cpu-multi-core.png){ .img-left }
 
+**Multi-CPU motherboard**
+
 Here's an example of a multi-CPU motherboard
 </div>
 *Figure 1: Source: [Phoronix](https://www.phoronix.com/news/Arch-Linux-Deprecating-i686)*
