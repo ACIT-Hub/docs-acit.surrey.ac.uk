@@ -1,7 +1,6 @@
 # Accelerated Compute Infrastructure Training
 
-Documentation to help you learn, operate and understand research computing infrastructure.
-
+Welcome to the Accelerated Compute Infrastructure Hub's documentation site. This documentation is designed to help you learn about, operate, and understand research computing infrastructure. Use the site navigation menu to start browsing, or select one of the quick links below.
 ## Modules
 
 <div class="grid cards" markdown>
