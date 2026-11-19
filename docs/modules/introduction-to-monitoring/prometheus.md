@@ -349,6 +349,7 @@ There are four types of metrics you might find, which each require different tim
         ```promql
         sum(rate(prometheus_http_requests_total[5m]))
         ```
+        
         ---------
 
         To group them according to `handler`, instead use `sum by()`
