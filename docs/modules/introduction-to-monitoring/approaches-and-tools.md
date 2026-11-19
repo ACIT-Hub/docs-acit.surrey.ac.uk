@@ -125,10 +125,35 @@ Despite its front-end focus, both Grafana dashboards and alerting rules can be e
 
     Also remember to shutdown the containers when you have completed all of the exercises.
 
+## Remote Writes & Long-Term Storage
+
+The core monitoring stack (Prometheus or VictoriaMetrics + Grafana + exporters) is excellent for day-to-day operations. Prometheus keeps recent, high-resolution data locally so you can investigate problems and fire alerts quickly. However, local storage is deliberately limited, typically days to a few weeks, because high-cardinality metrics from large accelerated systems (many nodes, GPUs, jobs, etc.) consume a lot of disk and memory.
+
+For longer timescales, capacity planning, trend analysis, historical comparisons, or compliance, you often need a fourth component: **long-term storage**. Prometheus (and VictoriaMetrics) support this through the **remote write protocol**. In simple terms, the local Prometheus instance continues to scrape and store recent data, while also continuously pushing (writing) the same samples to one or more remote systems.
+
+**Why it matters**
+- Keeps the operational Prometheus instances lightweight and responsive.
+- Allows you to retain metrics for months or years.
+- Lets you reduce resolution or drop less-important series after the operational window (for example, keep 15-second data for 2 weeks, then downsample to 5-minute or 1-hour data).
+- Enables centralised views across multiple clusters or sites.
+
+**Common destinations**
+Remote write endpoints vary by site, but typical choices include:
+
+- The same or a separate VictoriaMetrics instance (very common in research and HPC environments because of its efficiency at scale).
+- Grafana Mimir (or the older Cortex project).
+- Thanos Receive, which can then store data in object storage (S3, Ceph, etc.).
+- Cloud-managed services or another Prometheus instance configured as a receiver.
+
+You can also apply relabelling rules on the remote-write path to drop or rewrite metrics before they leave the local system, further controlling volume and cost.
+
+Remote write is optional for small systems but becomes almost essential once you move beyond a handful of nodes. The exact architecture (single long-term store, multi-tenant Mimir, Thanos + object storage, etc.) will differ between facilities; the important idea is that the local high-resolution "operational" store and the long-term store are deliberately separated. This may then also be linked back into the same or a different instance of Grafana.
+
 ## Keypoints
 
 - Different accelerated compute components use different exporters to expose their metrics.
 - Prometheus and Victoria Metrics are time-series databases commonly used in monitoring software stacks, capable of fetching and storing data produced by exporters.
 - Grafana is a dashboard tool commonly used for visualising collected metrics.
+- Larger systems are likely to utilise remote writes to a separate database, for long-term storage beyond the operational window.
 
 <!-- @Todo: These require review/refinement, quickly drafted when porting page from word doc. -->
