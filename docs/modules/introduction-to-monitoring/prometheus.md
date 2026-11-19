@@ -524,7 +524,7 @@ The `|` character means "or", so this single rule drops any metric with a name t
 
 You will normally only need the two actions `drop` and `keep` at this stage.
 
-`keep` works in the opposite way to `drop`, it **discards** metrics that do not match the Regex pattern and only keeps the ones that do.
+`keep` works in the opposite way to `drop`, it discards metrics that do not match the Regex pattern and only keeps the ones that do.
 
 Relabelling rules are applied in the order they are written. This means the order matters when you combine rules, a metric that is dropped by an earlier rule will never reach later rules.
 
