@@ -491,7 +491,7 @@ Detailed tuning of the queue is outside the scope of this introductory course. H
 
 ### Controlling what is sent (`write_relabel_configs`)
 
-If you omit `write_relabel_configs`, **every metric** Prometheus has scraped is sent to the remote storage. This can be useful for full redundancy, but it is rarely desirable for long-term storage because of the volume of data.
+If you omit `write_relabel_configs`, every metric Prometheus has scraped is sent to the remote storage. This can be useful for full redundancy, but it is rarely desirable for long-term storage because of the volume of data.
 
 Most sites therefore use relabelling to thin the data, keeping only the metrics that remain useful beyond the short operational window (typically days or a couple of weeks).
 
