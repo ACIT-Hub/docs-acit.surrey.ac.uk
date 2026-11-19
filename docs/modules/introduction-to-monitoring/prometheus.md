@@ -467,3 +467,65 @@ Alerts must be actionable; An alert which does not lead to an imminent response,
 When defining an alert, the primary consideration is the condition that should trigger it. This typically involves setting a threshold for a specific metric, potentially requiring that threshold to be exceeded for a defined period before an alert is raised and sent to the appropriate people or channel. 
 
 Because alert thresholds are highly dependent on local priorities and operational requirements, we recommend that they are agreed upon by the team responsible for receiving and responding to the alert. Likewise, the communication channel for alerts is likely to already be agreed at a team level, such as a Slack channel or mailing list. 
+
+## Remote Writes
+
+To enable remote writes you add a `remote_write` section to the Prometheus configuration file (`prometheus.yml`).
+
+At its simplest the section only needs the destination URL and (usually) some form of authentication:
+
+```yml {title="prometheus.yml"}
+remote_write:
+  - url: "http://long-term-storage.example.com/api/v1/write"
+    basic_auth:
+      username: "prometheus"
+      password_file: "/etc/prometheus/secrets/password"
+```
+
+In real systems however, you almost always add extra settings. The two most common additions are:
+
+- Queue settings: control buffering and how aggressively Prometheus sends data.
+- `write_relabel_configs`: decide which metrics are sent.
+
+Detailed tuning of the queue is outside the scope of this introductory course. However, you may be asked to adjust the relabelling rules (for example when a new exporter is added).
+
+### Controlling what is sent (`write_relabel_configs`)
+
+If you omit `write_relabel_configs`, **every metric** Prometheus has scraped is sent to the remote storage. This can be useful for full redundancy, but it is rarely desirable for long-term storage because of the volume of data.
+
+Most sites therefore use relabelling to thin the data, keeping only the metrics that remain useful beyond the short operational window (typically days or a couple of weeks).
+
+Every metric in Prometheus has a reserved label called `__name__` that holds the metric's name (for example `node_hwmon_temp_celsius` or `prometheus_http_requests_total` that we saw earlier). We almost always use this label when deciding what to keep or drop.
+
+**Example: Dropping a few noisy metrics**
+
+```yml {title="prometheus.yml#remote_write"}
+write_relabel_configs:
+  - source_labels: [__name__]
+    regex: "go_.*"
+    action: drop
+```
+
+This rule says:
+“Look at the metric name (`__name__`). If it starts with `go_`, drop it. Keep everything else.”
+
+*As covered earlier, `.*` is the Regex pattern that matches any (or no) characters.*
+
+**Example: Dropping several groups of metrics**
+
+```yml {title="prometheus.yml#remote_write"}
+write_relabel_configs:
+  - source_labels: [__name__]
+    regex: "go_.*|prometheus_.*"
+    action: drop
+```
+
+The `|` character means "or", so this single rule drops any metric with a name that starts with `go_` or `prometheus_`.
+
+You will normally only need the two actions `drop` and `keep` at this stage.
+
+`keep` works in the opposite way to `drop`, it **discards** metrics that do not match the Regex pattern and only keeps the ones that do.
+
+Relabelling rules are applied in the order they are written. This means the order matters when you combine rules, a metric that is dropped by an earlier rule will never reach later rules.
+
+More advanced label manipulation exists, but it is outside the scope of this introductory course.
