@@ -180,8 +180,8 @@ Four string matching operators can be used for labels:
 | -------- | ---------------------- | ----------------------------- |
 | `=`      | Exact match            | `chip="platform_coretemp_0"`  |
 | `!=`     | Does not exactly match | `chip!="platform_coretemp_0"` |
-| `=~`     | Regex match            | `sensor=~"temp[1-3]`          |
-| `!~`     | Does not match Regex   | `sensor!~"temp[1-3]`          |
+| `=~`     | Regex match            | `sensor=~"temp[1-3]"`         |
+| `!~`     | Does not match Regex   | `sensor!~"temp[1-3]"`         |
 
 Therefore, the previous sensor filter can be inverted by replacing `=~` with `!~`:
 
@@ -469,8 +469,8 @@ When designing alerts, follow two fundamental principles:
    <br/>
    Prefer thresholds and `for` durations that only fire on genuinely abnormal or sustained conditions.
 2. **Alerts must be actionable**
-    <br/>
-    An alert should require (or at least clearly benefit from) a human response in a reasonable timeframe.
+   <br/>
+   An alert should require (or at least clearly benefit from) a human response in a reasonable timeframe.
     - Good: "A node has been unreachable for 5 minutes" or "Free disk space on the shared filesystem has dropped below 10 % and is still falling."
     - Poor: "GPU utilisation reached 95 %." High utilisation during peak periods is often expected and is better reviewed later when planning capacity, not paged on.
 
@@ -519,6 +519,8 @@ If you are asked to set up a new alert, check with your team to ensure you use a
 Your team is also likely to have documented how alerts should be handled. Make sure this documentation is updated when alerts are added or changed. You may even want to update the documentation when responding to alerts, as new information comes to light.
 
 ## Remote Writes
+
+Remote writing, as introduced in [Approaches & Tools](approaches-and-tools.md), is often used in larger clusters to send metrics to a separate long-term storage database. This database can be shared across multiple smaller clusters and is particularly useful for retaining metrics that remain valuable beyond the typical operational retention window (for example, two weeks).
 
 To enable remote writes you add a `remote_write` section to the Prometheus configuration file (`prometheus.yml`).
 
