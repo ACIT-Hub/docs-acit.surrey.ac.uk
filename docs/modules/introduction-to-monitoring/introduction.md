@@ -26,17 +26,17 @@ By watching or analysing this data, supported by dashboards, automated notificat
 
 A wide range of metrics on a HPC can be monitored: 
 
-- **Nodes**: Are nodes responsive? Catch a failing login node before user’s report it.  
+- **Nodes**: Are nodes responsive? Catch a failing login node before users report it.
 - **Scheduler**: Do job statistics look healthy? Even if users can login, the scheduler might highlight an issue causing jobs to unexpectedly queue or fail. 
-- **Storage & I/O**: Are drives reporting any errors? This usually precedes a failure. 
-- **Interconnect & Network**: Even if nodes look healthy, perhaps their communication is deteriorating. Network issues might even include the external internet connection failing. 
+- **Storage & I/O**: Are drives reporting any errors? This usually precedes a failure.
+- **Interconnect & Network**: Even if nodes look healthy, perhaps their communication is deteriorating. Network issues might even include the external internet connection failing.
 - **Facility Power & Cooling**: If a facilities cooling or power goes down, it may be necessary to carefully take nodes offline to avoid damaging hardware or losing data.
 
-Whilst Research Infrastructure Engineers, and the wider operations team, are interested in monitoring system health, the same monitoring infrastructure can provide valuable information to other parties. 
+Whilst Research Infrastructure Engineers, and the wider operations team, are interested in monitoring system health, the same monitoring infrastructure can provide valuable information to other parties.
 
-Users may benefit from monitoring their workload statistics, to understand the performance of their jobs. Perhaps they are requesting more resources than necessary, and can adapt their job submissions to aide their scheduling. 
+Users may benefit from monitoring their workload statistics, to understand the performance of their jobs. Perhaps they are requesting more resources than necessary, and can adapt their job submissions to aide their scheduling.
 
-Likewise, stakeholders among management are often keen to monitor utilisation of their investment in the cluster. This could help to evidence how a cluster should be extended, or opportunities to improve sustainability (and reduce energy costs) by taking lower utilised nodes offline during quiet periods. 
+Likewise, stakeholders among management are often keen to monitor utilisation of their investment in the cluster. This could help to evidence how a cluster should be extended, or opportunities to improve sustainability (and reduce energy costs) by taking lower utilised nodes offline during quiet periods.
 
 As a junior RIE you may be expected to setup new dashboards from scratch, or configure initialisation workflows to automatically extend monitoring to new hardware. Likewise, you will need to understand the environment and chain of command locally, so that you can respond appropriately when monitoring surfaces an actionable metric.
 

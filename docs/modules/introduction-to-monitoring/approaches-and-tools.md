@@ -132,12 +132,14 @@ The core monitoring stack (Prometheus or VictoriaMetrics + Grafana + exporters) 
 For longer timescales, capacity planning, trend analysis, historical comparisons, or compliance, you often need a fourth component: **long-term storage**. Prometheus (and VictoriaMetrics) support this through the **remote write protocol**. In simple terms, the local Prometheus instance continues to scrape and store recent data, while also continuously pushing (writing) the same samples to one or more remote systems.
 
 **Why it matters**
+
 - Keeps the operational Prometheus instances lightweight and responsive.
 - Allows you to retain metrics for months or years.
-- Lets you reduce resolution or drop less-important series after the operational window (for example, keep 15-second data for 2 weeks, then downsample to 5-minute or 1-hour data).
+- Lets you reduce resolution or drop less-important series after the operational window (for example, keep 15 second data for 2 weeks, then downsample to 5-minute or 1-hour data).
 - Enables centralised views across multiple clusters or sites.
 
 **Common destinations**
+
 Remote write endpoints vary by site, but typical choices include:
 
 - The same or a separate VictoriaMetrics instance (very common in research and HPC environments because of its efficiency at scale).
