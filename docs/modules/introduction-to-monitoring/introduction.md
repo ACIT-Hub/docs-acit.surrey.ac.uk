@@ -38,7 +38,7 @@ Users may benefit from monitoring their workload statistics, to understand the p
 
 Likewise, stakeholders among management are often keen to monitor utilisation of their investment in the cluster. This could help to evidence how a cluster should be extended, or opportunities to improve sustainability (and reduce energy costs) by taking lower utilised nodes offline during quiet periods.
 
-As a junior RIE you may be expected to setup new dashboards from scratch, or configure initialisation workflows to automatically extend monitoring to new hardware. Likewise, you will need to understand the environment and chain of command locally, so that you can respond appropriately when monitoring surfaces an actionable metric.
+As a RIE new to monitoring you may be expected to setup new dashboards from scratch, or configure initialisation workflows to automatically extend monitoring to new hardware. Likewise, you will need to understand the environment and chain of command locally, so that you can respond appropriately when monitoring surfaces an actionable metric.
 
 ## Why monitor?
 
@@ -55,6 +55,6 @@ This has a direct connection to sustainability. Maximising utilisation means get
 - Monitoring is the processes of regular collecting metrics from accelerated compute infrastructure, to aide decision making and streamline the diagnosis and resolution of faults.
 - Monitoring metrics extend from the scheduling software, to hardware metrics and even in some cases to the facility housing the infrastructure.
 - Users, RIEs and Stakeholders each have an interest in different collected metrics.
-- Junior RIEs may be expected to both create and respond to dashboards.
+- RIEs new to monitoring may be expected to both create and respond to dashboards.
 
 <!-- @Todo: These require review/refinement, quickly drafted when porting page from word doc. -->
