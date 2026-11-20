@@ -455,18 +455,65 @@ Now when Prometheus is restarted, a new metric with the name `prometheus_http_re
 
 ### Alerting Rules
 
-<!-- @Todo: May want to configure alerts within Grafana -->
-Alerting Rules, define conditions using Prometheus expressions which fire alerts to external services (e.g. Slack) via Prometheus’ stand-alone Alert Manager.
+Alerting rules in Prometheus define conditions (expressed in PromQL) that, when met, cause Prometheus to fire alerts. These alerts are sent to Prometheus’ standalone Alertmanager executable, which handles grouping, deduplication, silencing, inhibition, and routing to external notification channels such as Slack, email,  Microsoft Teams or Google spaces.
 
-When configuring alerts, it’s important to follow two principles: 
+Prometheus itself is responsible only for evaluating the rules and generating alert instances. Alertmanager is responsible for delivering them. (Grafana Alerting will be covered in a later chapter; the principles below still apply.)
 
-Alerts should not trigger frequently; if alerts are triggering regularly, they will lead to alarm fatigue whereby RIEs become desensitised to alerts. 
+**Core Principles for Effective Alerts**
 
-Alerts must be actionable; An alert which does not lead to an imminent response, should not be an alert. Many metrics may naturally reach close to maximum during peak periods, this is not something actionable, rather it’s something that stakeholders may review in future when considering expanding the cluster. 
+When designing alerts, follow two fundamental principles:
 
-When defining an alert, the primary consideration is the condition that should trigger it. This typically involves setting a threshold for a specific metric, potentially requiring that threshold to be exceeded for a defined period before an alert is raised and sent to the appropriate people or channel. 
+1. **Alerts should not fire frequently**
+   If an alert triggers regularly during normal operation, the team will quickly become desensitised (alert fatigue). People start ignoring or muting the channel, which defeats the purpose of alerting.
+   Prefer thresholds and `for` durations that only fire on genuinely abnormal or sustained conditions.
+2. **Alerts must be actionable**
+    An alert should require (or at least clearly benefit from) a human response in a reasonable timeframe.
+    - Good: "A node has been unreachable for 5 minutes" or "Free disk space on the shared filesystem has dropped below 10 % and is still falling."
+    - Poor: "GPU utilisation reached 95 %." High utilisation during peak periods is often expected and is better reviewed later when planning capacity, not paged on.
 
-Because alert thresholds are highly dependent on local priorities and operational requirements, we recommend that they are agreed upon by the team responsible for receiving and responding to the alert. Likewise, the communication channel for alerts is likely to already be agreed at a team level, such as a Slack channel or mailing list. 
+Because both the right thresholds and the right response owners are highly environment-specific, alert conditions and notification channels should be agreed by the team that will actually receive and act on the alerts.
+
+**Describing an Alert Rule**
+
+Alerting rules are normally live in one or more rule files that Prometheus loads (configured via `rule_files` in `prometheus.yml`, the same as were introduced with recording rules above). A minimal but useful example of an alerting rules file looks like this:
+
+```.yml {title="rules/node_alerts.yml"}
+groups:
+  - name: node
+    rules:
+      - alert: NodeDown
+        expr: up{job="node"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Node {{ $labels.instance }} is down"
+          description: "{{ $labels.instance }} has been unreachable for more than 5 minutes."
+
+      - alert: NodeHighTemp
+        expr: avg by (instance, sensor) (node_hwmon_temp_celsius) > 85
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Sensor {{ $labels.sensor }} on {{ $labels.instance }} is running hot"
+          description: "Temperature has been above 85 °C for 10 minutes (current value: {{ $value }} °C)."
+```
+<!-- Would love to include a real screenshot of how such an alert appears here, but pain setting up handlers, only managed google spaces with Grafana alerts -->
+
+Key fields:
+
+- `alert` – A unique name for the alert.
+- `expr` – A PromQL expression that evaluates to a vector of time series. Any series that is non-empty (and satisfies the `for` clause) becomes a firing alert.
+- `for` – Optional but strongly recommended. The condition must be true continuously for this long before the alert moves from "pending" to "firing". This filters out brief spikes.
+- `labels` – Extra labels attached to the alert (commonly severity, team, service). These are used by Alertmanager for routing and grouping.
+- `annotations` – Human-readable information. They support templating with labels (`{{ $labels.instance }}`) and the current value (`{{ $value }}`). Good annotations make the alert self-explanatory when it arrives in Slack or email.
+
+Configuring Alertmanager is outside the scope of this course. Your team is likely to already have their alert handler configured with the appropriate user groups and services to receive notifications.
+
+If you are asked to set up a new alert, check with your team to ensure you use appropriate labels—consistent labels help ensure alerts are handled predictably.
+
+Your team is also likely to have documented how alerts should be handled. Make sure this documentation is updated when alerts are added or changed. You may even want to update the documentation when responding to alerts, as new information comes to light.
 
 ## Remote Writes
 
