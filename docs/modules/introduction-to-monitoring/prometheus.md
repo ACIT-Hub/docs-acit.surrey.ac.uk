@@ -464,9 +464,12 @@ Prometheus itself is responsible only for evaluating the rules and generating al
 When designing alerts, follow two fundamental principles:
 
 1. **Alerts should not fire frequently**
+   <br/>
    If an alert triggers regularly during normal operation, the team will quickly become desensitised (alert fatigue). People start ignoring or muting the channel, which defeats the purpose of alerting.
+   <br/>
    Prefer thresholds and `for` durations that only fire on genuinely abnormal or sustained conditions.
 2. **Alerts must be actionable**
+    <br/>
     An alert should require (or at least clearly benefit from) a human response in a reasonable timeframe.
     - Good: "A node has been unreachable for 5 minutes" or "Free disk space on the shared filesystem has dropped below 10 % and is still falling."
     - Poor: "GPU utilisation reached 95 %." High utilisation during peak periods is often expected and is better reviewed later when planning capacity, not paged on.

@@ -51,7 +51,7 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
 ??? info "3. Prometheus/Victoria Metrics & Exporters"
     - How are metrics configured for collection?
     - How is PromQL used to query metrics?
-    - How are alerting conditions configured?
+    - What are recording and alerting rules, and how are they configured?
     
     [ Go to section](prometheus.md)
 
