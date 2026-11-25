@@ -35,6 +35,7 @@ Most physical CPU chips have multiple sub-CPUs, called ‘cores’.
 This CPU has 4 cores 
 
 </div>
+
 *Figure 1.1: Source:*
 
 This means that it can do four things at once. 
@@ -118,9 +119,15 @@ This is an example of a supercomputer at the University of Bristol:
 <div class="img-box" markdown>
 ![Logo](../../assets/images/super-computer.png){ .img-left width="500"}
 
+**Isambard AI Phase 2**
+
+
+Inside the Isambard-AI Supercomputer, built by:
+
+Bristol Centre for Supercomputing
 
 </div>
-*Figure 1.5: Source:*
+*Figure 1.5: Source:* [Isambard AI](https://www.bristol.ac.uk/research/centres/bristol-supercomputing/)
 
 Inside each of those cabinets are about 40 computers on top of each other, each acting as single entity. 
 
@@ -169,7 +176,7 @@ Over the last 25 years they have become much more powerful and flexible.
 
 
 </div>
-*Figure 1.5: Source:*
+*Figure 1.5: Source:* 
 
 
 GPUs (Graphics Processing Units) were originally designed to draw images on screens, especially for games. An HD screen has around 2 million pixels, and the computer needs to decide the colour of each pixel, many times per second. 
