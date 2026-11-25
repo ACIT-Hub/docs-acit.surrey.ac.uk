@@ -296,9 +296,11 @@ As you progress, you will move from following existing runbooks and instructions
 ### 8. Try it yourself: RIE scenarios 
 
 **Scenario 1: GPU job pending** 
-![h5p](gpu-troubleshooting-quiz.h5p)
+![h5p](scenario-gpu-job-pending.h5p)
 
 **Scenario 2: New project storage** 
+
+![h5p](scenario-storage-request.h5p)
 
 **Scenario 3: Account creation**
 ![h5p](scenario-account-creation-3.h5p)
