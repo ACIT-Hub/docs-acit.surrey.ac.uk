@@ -42,21 +42,24 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
 
     [ Go to section](introduction.md)
 
-??? info "2. Monitoring Approaches and Tools"
+??? info "2. Monitoring Approaches & Tools"
     - What does the architecture of a classic monitoring setup look like.
     - Who may have interest in monitored metrics.
 
     [ Go to section](approaches-and-tools.md)
 
-??? info "3. Prometheus/Victoria Metrics & Exporters"
+??? info "3. Collecting & Processing Metrics"
     - How are metrics configured for collection?
     - How is PromQL used to query metrics?
     - What are recording and alerting rules, and how are they configured?
     
     [ Go to section](prometheus.md)
 
-??? info "4. Grafana"
-    - pending (Awaiting dashboard examples to guide development)
+??? info "4. Visualising Metrics"
+    - How is a dashboard created in Grafana?
+    - How are the creation of dashboards and their components prioritised?
+    - What does a good dashboard look like?
 
-    <!-- [ Go to section](grafana.md) -->
+    [ Go to section](grafana.md)
 
+<!-- 5. Using Metrics?? -->

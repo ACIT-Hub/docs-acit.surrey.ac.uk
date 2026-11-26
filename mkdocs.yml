@@ -77,6 +77,7 @@ nav:
           - Ethics and Sustainable Compute: modules/introduction-to-accelerated-compute/ethics-and-sustainable-compute.md
       - Introduction to Monitoring for Accelerated Compute:
           - Overview: modules/introduction-to-monitoring/index.md
-          - modules/introduction-to-monitoring/introduction.md
-          - modules/introduction-to-monitoring/approaches-and-tools.md
-          - modules/introduction-to-monitoring/prometheus.md
+          - Introduction: modules/introduction-to-monitoring/introduction.md
+          - Monitoring Approaches & Tools: modules/introduction-to-monitoring/approaches-and-tools.md
+          - Collecting & Processing Metrics: modules/introduction-to-monitoring/prometheus.md
+          - Visualising Metrics: modules/introduction-to-monitoring/grafana.md

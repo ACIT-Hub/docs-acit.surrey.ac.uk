@@ -1,4 +1,4 @@
-# Using Prometheus & Exporters
+# Collecting & Processing Metrics
 
 Prometheus and Victoria Metrics are inherently time series databases, which gather and store metrics, labelling them to help identify their source. Lets breakdown some of these new terms:
 
