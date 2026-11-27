@@ -81,7 +81,9 @@ The above summary is not exhaustive, other hardware solutions will normally have
 
 ## Grafana
 
-<!-- @Todo: Feels like we need a high-level intro to Grafana/dashboards here -->
+Dashboards provide a centralised, visual overview of the live and historical metrics collected by your system. Rather than searching through individual metrics and graphs, bespoke dashboards bring together the most relevant information in easily interpretable formats, making it easier to assess system health, identify performance issues, and investigate potential problems.
+
+For example, if a user reports an issue that suggests a compute node may be behaving abnormally, the relevant dashboard can be reviewed to quickly determine whether the available metrics support the report. Without a suitable dashboard, investigating the issue could require multiple queries across different metrics, making the process more time-consuming and less straightforward.
 
 <!-- @todo Replace this with a submit case-study dashboard -->
 <div class="img-box" markdown>
@@ -90,7 +92,7 @@ An example Grafana Dashboard from a HPC system.
 </div>
 *Figure 2*
 
-Grafana is a query and visualisation front-end, which allows users to import metrics from Prometheus and other sources and configure bespoke dashboards with a large range of visualisation components to meet requirements. It does not collect or store any metrics itself.
+Grafana is a widely used query and visualisation front-end, which allows users to import metrics from Prometheus and other sources and configure bespoke dashboards with a large range of visualisation components to meet requirements. It does not collect or store any metrics itself.
 
 In addition to building dashboards from scratch, it is possible to import (and modify) dashboards. Public dashboard, available from [Grafana's website](https://grafana.com/grafana/dashboards/) are sometimes imported as starting points, but they are often too general (showing every metric an exporter provides) and are typically customized to surface only the most actionable information for a given system or team.
 
