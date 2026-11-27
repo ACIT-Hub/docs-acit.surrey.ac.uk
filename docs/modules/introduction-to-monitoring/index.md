@@ -56,8 +56,8 @@ This module introduces the fundamentals of monitoring from an RIE perspective. Y
     [ Go to section](prometheus.md)
 
 ??? info "4. Visualising Metrics"
-    - How is a dashboard created in Grafana?
     - How are the creation of dashboards and their components prioritised?
+    - How is a dashboard created in Grafana?
     - What does a good dashboard look like?
 
     [ Go to section](grafana.md)
