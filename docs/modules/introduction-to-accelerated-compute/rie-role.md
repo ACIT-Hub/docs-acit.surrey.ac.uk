@@ -27,7 +27,7 @@ Depending on where you work and the focus of the role, RIEs may be called one of
 
 
 </div>
-*Figure 1.7:*
+*Figure 1.7*
 
 
 **How does the RIE role compare to similar roles outside of research?**
