@@ -214,7 +214,7 @@ Over time, people realised this idea could be used for general‑purpose computa
 
     ??? success "Show our answer"
 
-        GPUs are for doing lots of the same calculation at the same time. .
+        GPUs are for doing lots of the same calculation at the same time.
 
 
 !!! question "Challenge"
