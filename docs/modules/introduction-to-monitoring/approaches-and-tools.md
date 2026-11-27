@@ -50,7 +50,7 @@ As the name implies, [node exporter](https://github.com/prometheus/node_exporter
 
 ### SLURM Exporter
 
-Whilst you could manually probe SLURM for scheduler metrics, [SLURM exporter](https://github.com/sckyzo/slurm_exporter) exposes all the information you might want from the scheduler, alongside some sample Grafana dashboards. If your system instead uses Kubernetes, a SLURM exporter would be redundant.
+Whilst you could manually probe SLURM for scheduler metrics, [SLURM exporter](https://github.com/sckyzo/slurm_exporter) exposes all the information you might want from the scheduler, alongside some sample Grafana dashboards.
 
 ### NVIDIA DCGM (GPU) Exporter 
 
