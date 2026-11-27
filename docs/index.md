@@ -11,7 +11,7 @@ Welcome to the Accelerated Compute Infrastructure Hub's documentation site. This
 
     Foundations of accelerated computing for the Research Infrastructure Engineering role.
 
-- :material-chart-line: **[Monitoring for Accelerated Compute](modules/monitoring-for-accelerated-compute.md)**
+- :material-chart-line: **[Monitoring for Accelerated Compute](modules/introduction-to-monitoring/index.md)**
 
     ---
 
